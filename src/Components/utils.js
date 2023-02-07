@@ -64,53 +64,6 @@ export function shuffleSame() {
 
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
-// function to generate dot positions given the x and y of the box
-
-export function genDotPos(
-  sqxstartpoint,
-  sqystartpoint,
-  squareWidth,
-  dotRadius
-) {
-  var dotXArray = [];
-  var dotYArray = [];
-  for (
-    var x = sqxstartpoint + dotRadius;
-    x < sqxstartpoint + squareWidth;
-    x += dotRadius
-  ) {
-    for (
-      var y = sqystartpoint + dotRadius;
-      y < sqystartpoint + squareWidth;
-      y += dotRadius
-    ) {
-      dotXArray.push(x);
-      dotYArray.push(y);
-    }
-  }
-  return [dotXArray, dotYArray];
-}
-
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
-// function to generate the x and y coor for all of the dots
-
-export function genDots(dotPosX, dotPosY) {
-  if (dotPosX.length === dotPosY.length) {
-    return [...Array(dotPosX.length)].map((_, i) => ({
-      id: i.toString(),
-      x: dotPosX[i],
-      y: dotPosY[i],
-      isDragging: false,
-    }));
-  } else {
-    const e = new Error("Dot coordinates not same length!");
-    throw e;
-  }
-}
-
-////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////
 // function to generate random interger
 
 export function randomInt(min, max) {
