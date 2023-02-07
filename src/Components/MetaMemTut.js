@@ -848,7 +848,8 @@ class MetaMemTut extends React.Component {
 
     let instruct_text11 = (
       <div>
-        Amazing! You scored 4/4 for the quiz.
+        Amazing! You scored {this.state.quizCorTotal}/{this.state.quizNumTotal}{" "}
+        for the quiz.
         <br />
         <br />
         You are ready to start the main task.
@@ -911,12 +912,12 @@ class MetaMemTut extends React.Component {
     let quiz_text2 = (
       <div>
         <strong>Q{this.state.quizNum}:</strong> Next, you are shown a choice
-        between two tools. What do you do?
+        between two tools, as words. What do you do?
         <br />
         <br />
-        [1] - I select the tool that was shown.
+        [1] - I select the tool that was shown previously.
         <br />
-        [2] - I select the tool that was not shown.
+        [2] - I select the tool that was not shown previously.
         <br />
         [3] - I select both tools.
         <br />

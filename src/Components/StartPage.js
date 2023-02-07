@@ -66,18 +66,14 @@ class StartPage extends React.Component {
     var timeString = currentDate.toTimeString();
 
     // ID number - either set or get from url
-    var prolific_id = Math.floor(100000 + Math.random() * 900000);
-    //var prolific_id = 120000; //for testing
+    //  var userID = Math.floor(100000 + Math.random() * 900000);
+    //var userID = 120000; //for testing
 
-    //let url = this.props.location.search;
-    //let params = queryString.parse(url);
-    //const prolific_id =
-    //  params["USER_PID"] === undefined ? "undefined" : params["USER_PID"];
-    //console.log(prolific_id);
+    const userID = this.props.state.userID;
 
     // Set state
     this.state = {
-      userID: prolific_id,
+      userID: userID,
       date: dateString,
       dateTime: dateTime,
       startTime: timeString,
