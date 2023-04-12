@@ -491,11 +491,11 @@ class MetaMemTut extends React.Component {
         this.state.quizCorTotal +
         "/5 correctly. Please read the instructions carefully.";
       quizFeedback2 =
-        "Your task is to choose the tool that was shown previously.";
+        "Your task is to choose the animal that was shown previously.";
     } else {
       quizFeedback1 = "Well done!";
       quizFeedback2 =
-        "You saw that choosing the tool that was shown previously was the correct answer.";
+        "You saw that choosing the animal that was shown previously was the correct answer.";
     }
 
     let instruct_text1 = (
@@ -506,9 +506,9 @@ class MetaMemTut extends React.Component {
           The ship has been damaged with an asteriod hit, and we are glad you
           are here to help.
           <br /> <br />
-          As the engineer, we need you to repair the damaged parts of the
-          spaceship. However, the tools we need were scattered in the impact -
-          we need your assistance in selecting the ones that we need.
+          In the collision, the animals we brought on board have scattered to
+          various parts of the spaceship. We need your assistance in catelouging
+          them.
           <br /> <br />
           <center>
             Use the ← and → keys to navigate the pages.
@@ -524,7 +524,7 @@ class MetaMemTut extends React.Component {
 
     let instruct_text2 = (
       <div>
-        <span>We have a variety of tools on board:</span>
+        <span>We have a variety of animals on board:</span>
         <br />
         <br />
         <span>
@@ -542,10 +542,10 @@ class MetaMemTut extends React.Component {
     let instruct_text3 = (
       <div>
         <span>
-          As there are many tools available, we will show you a selection of
-          them at one time. You will have to <strong>memorise</strong> the
-          spread of tools shown. Thereafter, when we ask which one you have
-          seen, you should choose <strong>the tool you previously saw</strong>.
+          As there are many animals, we will show you a selection of them at one
+          time. You will have to <strong>memorise</strong> the spread of animals
+          shown. Thereafter, when we ask which one you have seen, you should
+          choose <strong>the animal you previously saw</strong>.
         </span>
         <br />
         <br />
@@ -574,7 +574,7 @@ class MetaMemTut extends React.Component {
           </center>
         </span>
         <span>
-          Try to remember all of these tools shown!
+          Try to remember all of these animals shown!
           <br />
           <br />
           <center>
@@ -587,8 +587,8 @@ class MetaMemTut extends React.Component {
     let instruct_text4 = (
       <div>
         <span>
-          Next, we will show you a choice between two tools. You can select the
-          one that you previously saw with a keypress.
+          Next, we will show you a choice between two animals. You can select
+          the one that you previously saw with a keypress.
           <br />
           <br />
           <center>
@@ -601,14 +601,14 @@ class MetaMemTut extends React.Component {
             <br />
             <br />
           </center>
-          If the tool on the <strong>left</strong> was present previously,{" "}
+          If the animal on the <strong>left</strong> was present previously,{" "}
           <strong>press W</strong>.
           <br />
-          If the tool on the <strong>right</strong> was present previously,{" "}
+          If the animal on the <strong>right</strong> was present previously,{" "}
           <strong>press O</strong>.
           <br />
           <br />
-          Your selected tool will be outlined in{" "}
+          Your selected animal will be outlined in{" "}
           <font color="#87C1FF">
             <strong>light blue</strong>
           </font>
@@ -650,7 +650,7 @@ class MetaMemTut extends React.Component {
           whether your choices are right or wrong.
           <br />
           <br />
-          If you are <strong>correct</strong>, the tool that you selected will
+          If you are <strong>correct</strong>, the animal that you selected will
           have its outline turn{" "}
           <font color="green">
             <strong>green</strong>
@@ -658,8 +658,8 @@ class MetaMemTut extends React.Component {
           .
           <br />
           <br />
-          If you are <strong>incorrect</strong>, the tool that you selected will
-          have its outline turn{" "}
+          If you are <strong>incorrect</strong>, the animal that you selected
+          will have its outline turn{" "}
           <font color="red">
             <strong>red</strong>
           </font>
@@ -677,26 +677,26 @@ class MetaMemTut extends React.Component {
       <div>
         <span>
           You will have {this.state.trialNumTotal} chances to choose the correct
-          tools.
+          animals.
           <br />
           <br />
           For every choice, you will be presented with a white cross in the
-          middle of the screen first before a selection of tools will appear.
-          Please pay attention closely as the tools will be{" "}
+          middle of the screen first before a selection of animals will appear.
+          Please pay attention closely as the animals will be{" "}
           <strong>flashed quickly only once</strong>.
           <br />
           <br />
-          You will then be shown two tools - make your selection of{" "}
-          <strong>the tool you previously saw</strong>.
+          You will then be shown two animals - make your selection of{" "}
+          <strong>the animal you previously saw</strong>.
           <br />
           <br />
           As a reminder:
           <br />
           <br />
-          <strong>Press W</strong> to choose the tool on the{" "}
+          <strong>Press W</strong> to choose the animal on the{" "}
           <strong>left</strong>.
           <br />
-          <strong>Press O</strong> to choose the tool on the{" "}
+          <strong>Press O</strong> to choose the animal on the{" "}
           <strong>right</strong>.
           <br />
           <br />
@@ -721,7 +721,7 @@ class MetaMemTut extends React.Component {
           <br />
           <br />
           During the main task, you will also have to indicate your{" "}
-          <strong>confidence</strong> in your choice of the tool you pick.
+          <strong>confidence</strong> in your choice of the animal you pick.
           <br />
           <br />
           After every choice, we will show you a rating scale to rate the{" "}
@@ -896,14 +896,14 @@ class MetaMemTut extends React.Component {
     let quiz_text1 = (
       <div>
         <strong>Q{this.state.quizNum}:</strong> You are first shown a variety of
-        tools. What do you do?
+        animals. What do you do?
         <br />
         <br />
-        [1] - I try to figure out which tool is not there.
+        [1] - I try to figure out which animal is not there.
         <br />
-        [2] - I count the number of tools shown.
+        [2] - I count the number of animals shown.
         <br />
-        [3] - I memorise the tools that are shown.
+        [3] - I memorise the animals that are shown.
         <br />
         [4] - I am unsure.
       </div>
@@ -912,14 +912,14 @@ class MetaMemTut extends React.Component {
     let quiz_text2 = (
       <div>
         <strong>Q{this.state.quizNum}:</strong> Next, you are shown a choice
-        between two tools, as words. What do you do?
+        between two animals, as words. What do you do?
         <br />
         <br />
-        [1] - I select the tool that was shown previously.
+        [1] - I select the animal that was shown previously.
         <br />
-        [2] - I select the tool that was not shown previously.
+        [2] - I select the animal that was not shown previously.
         <br />
-        [3] - I select both tools.
+        [3] - I select both animals.
         <br />
         [4] - I am unsure.
       </div>
@@ -1560,7 +1560,7 @@ class MetaMemTut extends React.Component {
       ) {
         text = (
           <div className={style.boxStyle}>
-            <center>Memorise these tools:</center>
+            <center>Memorise these animals:</center>
             <br />
             <br />
             <br />
@@ -1583,7 +1583,7 @@ class MetaMemTut extends React.Component {
       ) {
         text = (
           <div className={style.boxStyle}>
-            <center>Which tool was shown?</center>
+            <center>Which animal was shown?</center>
             <br />
             <br />
             <br />
@@ -1608,7 +1608,7 @@ class MetaMemTut extends React.Component {
       ) {
         text = (
           <div className={style.boxStyle}>
-            <center>Which tool was shown?</center>
+            <center>Which animal was shown?</center>
             <br />
             <br />
             <br />

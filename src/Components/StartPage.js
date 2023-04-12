@@ -7,48 +7,53 @@ import withRouter from "./withRouter";
 //import { json } from "./consent/consent.js"; //short for debugging
 import { json } from "./consent/consentFull.js";
 
-import blade from "./stim/blade.svg";
-import cone from "./stim/cone.svg";
-import drill from "./stim/drill.svg";
-import hammer from "./stim/hammer.svg";
-import knife from "./stim/knife.svg";
-import lighthead from "./stim/lighthead.svg";
-import nails from "./stim/nails.svg";
-import paint from "./stim/paint.svg";
-import paintbrush from "./stim/paintbrush.svg";
-import saw from "./stim/saw.svg";
-import screwdriver from "./stim/screwdriver.svg";
-import spanner from "./stim/spanner.svg";
+import butterfly from "./ani-stim/butterfly.jpg";
+import ladybug from "./ani-stim/ladybug.jpg";
+import snail from "./ani-stim/snail.jpg";
+import frog from "./ani-stim/frog.jpg";
+import beetle from "./ani-stim/beetle.jpg";
+import ant from "./ani-stim/ant.jpg";
+//import camel from "./ani-stim/camel.jpg";
+import owl from "./ani-stim/owl.jpg";
+import tiger from "./ani-stim/tiger.jpg";
+import panther from "./ani-stim/panther.jpg";
+import bear from "./ani-stim/bear.jpg";
+import snake from "./ani-stim/snake.jpg";
+import gorilla from "./ani-stim/gorilla.jpg";
+import spider from "./ani-stim/spider.jpg";
+//import buffalo from "./ani-stim/waterbuffalo.jpg";
 
 ////////////////
 var stateWord = [
-  "blade",
-  "cone",
-  "drill",
-  "hammer",
-  "knife",
-  "lighthead",
-  "nails",
-  "paint",
-  "paintbrush",
-  "saw",
-  "screwdriver",
-  "spanner",
+  "butterfly",
+  "ladybug",
+  "snail",
+  "frog",
+  "beetle",
+  "ant",
+  "owl",
+  "tiger",
+  "panther",
+  "bear",
+  "snake",
+  "gorilla",
+  "spider",
 ];
 
 var statePic = [
-  blade,
-  cone,
-  drill,
-  hammer,
-  knife,
-  lighthead,
-  nails,
-  paint,
-  paintbrush,
-  saw,
-  screwdriver,
-  spanner,
+  butterfly,
+  ladybug,
+  snail,
+  frog,
+  beetle,
+  ant,
+  owl,
+  tiger,
+  panther,
+  bear,
+  snake,
+  gorilla,
+  spider,
 ];
 
 class StartPage extends React.Component {
@@ -116,7 +121,7 @@ class StartPage extends React.Component {
     });
 
     //On click consent, sent to tutorial page with the props
-    this.props.navigate("/MetaMemTut", {
+    this.props.navigate("/MetaMemPreTut", {
       state: {
         userID: this.state.userID,
         date: this.state.date,
