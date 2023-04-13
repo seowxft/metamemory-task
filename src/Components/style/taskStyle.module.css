@@ -93,6 +93,10 @@ img.instructStimDis {
   border: 5px solid black;
 }
 
+img.stimDisHide {
+  display: none;
+}
+
 button {
   background-color: #000000;
   border-color: white;

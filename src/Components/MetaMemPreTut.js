@@ -1015,6 +1015,13 @@ class MetaMemPreTut extends React.Component {
           <div className={style.boxStyle}>
             <br />
             <br />
+            <center>
+              <img
+                className={style.stimDisHide}
+                src={this.state.stimShown}
+                alt="stim1"
+              />{" "}
+            </center>
             <DrawFix />
           </div>
         );

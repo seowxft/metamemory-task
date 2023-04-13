@@ -1127,12 +1127,12 @@ class MetaMemTask extends React.Component {
     });
   }
 
-  renderImages(number, imageArray) {
+  renderImages(number, imageArray, className) {
     const imageElements = [];
     for (let i = 0; i < number; i++) {
       const imageSrc = imageArray[i];
       imageElements.push(
-        <img key={i} className={style.instructStimDis} src={imageSrc} alt="" />
+        <img key={i} className={className} src={imageSrc} alt="" />
       );
     }
     return imageElements;
@@ -1176,6 +1176,13 @@ class MetaMemTask extends React.Component {
           <div className={style.boxStyle}>
             <br />
             <br />
+            <center>
+              {this.renderImages(
+                this.state.stimNum,
+                this.state.stimShown,
+                style.stimDisHide
+              )}
+            </center>
             <DrawFix />
           </div>
         );
@@ -1193,7 +1200,11 @@ class MetaMemTask extends React.Component {
             <br />
             <br />
             <center>
-              {this.renderImages(this.state.stimNum, this.state.stimShown)}
+              {this.renderImages(
+                this.state.stimNum,
+                this.state.stimShown,
+                style.instructStimDis
+              )}
             </center>
           </div>
         );
