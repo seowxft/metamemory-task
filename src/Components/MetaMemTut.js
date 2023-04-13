@@ -501,14 +501,9 @@ class MetaMemTut extends React.Component {
     let instruct_text1 = (
       <div>
         <span>
-          Welcome to spaceship, engineer!
-          <br /> <br />
-          The ship has been damaged with an asteriod hit, and we are glad you
-          are here to help.
-          <br /> <br />
-          In the collision, the animals we brought on board have scattered to
-          various parts of the spaceship. We need your assistance in catelouging
-          them.
+          As mentioned earlier, the animals we brought on board have scattered
+          to various parts of the spaceship. As we encounter them, we need your
+          assistance in catelouging one of the ones you have seen.
           <br /> <br />
           <center>
             Use the ← and → keys to navigate the pages.
@@ -542,10 +537,10 @@ class MetaMemTut extends React.Component {
     let instruct_text3 = (
       <div>
         <span>
-          As there are many animals, we will show you a selection of them at one
-          time. You will have to <strong>memorise</strong> the spread of animals
-          shown. Thereafter, when we ask which one you have seen, you should
-          choose <strong>the animal you previously saw</strong>.
+          As we encounter the animals, you will have to{" "}
+          <strong>memorise</strong> the all ones that are shown. Thereafter,
+          when we ask which animal you have seen, you should choose{" "}
+          <strong>the one you previously saw</strong>.
         </span>
         <br />
         <br />
@@ -587,20 +582,10 @@ class MetaMemTut extends React.Component {
     let instruct_text4 = (
       <div>
         <span>
-          Next, we will show you a choice between two animals. You can select
+          Next, we will show you a choice between two animals. You should select
           the one that you previously saw with a keypress.
           <br />
           <br />
-          <center>
-            For instance:
-            <br />
-            <br />
-            <span className={style.choiceWord}>{this.state.stateWord[7]}</span>
-            &nbsp;or&nbsp;
-            <span className={style.choiceWord}>{this.state.stateWord[8]}</span>
-            <br />
-            <br />
-          </center>
           If the animal on the <strong>left</strong> was present previously,{" "}
           <strong>press W</strong>.
           <br />
@@ -642,8 +627,8 @@ class MetaMemTut extends React.Component {
     let instruct_text5 = (
       <div>
         <span>
-          Please respond quickly and to the best of your ability - the
-          spaceship&apos;s repair depends on it!
+          Please respond quickly and to the best of your ability - we need to
+          round up the animals quickly!
           <br />
           <br />
           Let&apos;s start with a practice. In this phase we will tell you
@@ -681,7 +666,7 @@ class MetaMemTut extends React.Component {
           <br />
           <br />
           For every choice, you will be presented with a white cross in the
-          middle of the screen first before a selection of animals will appear.
+          middle of the screen first before a spread of animals will appear.
           Please pay attention closely as the animals will be{" "}
           <strong>flashed quickly only once</strong>.
           <br />
@@ -1509,6 +1494,16 @@ class MetaMemTut extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
+
+    var statePic = this.state.statePic;
+
+    [statePic].forEach((image) => {
+      new Image().src = image;
+    });
+
+    this.setState({
+      statePic: statePic,
+    });
   }
 
   renderImages(number, imageArray) {

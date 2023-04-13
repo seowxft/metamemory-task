@@ -229,40 +229,58 @@ class MetaMemPreTut extends React.Component {
     console.log("response: " + response);
     console.log("correct: " + correct);
 
-    var stimShown = this.state.stimShown;
-    var stimWordShown = this.state.stimWordShown;
+    this.setState({
+      responseKey: keyPressed,
+      choice: choice,
+      respTime: respTime,
+      correct: correct,
+    });
+
+    setTimeout(
+      function () {
+        this.ifCorrect();
+      }.bind(this),
+      0
+    );
+  }
+
+  ifCorrect() {
+    var correct = this.state.correct;
+    var stimShown = this.state.stimShown[0];
+    var stimWordShown = this.state.stimWordShown[0];
 
     var stateWordArray = this.state.stateWordArray;
     var statePicArray = this.state.statePicArray;
     var stateWordArrayLeft;
     var statePicArrayLeft;
 
+    console.log("stateWordArray: " + stateWordArray);
     console.log("stateWordArray: " + stateWordArray.length);
-    console.log("statePicArray: " + statePicArray.length);
-    console.log("this.state.stimWordShown: " + this.state.stimWordShown);
+    //  console.log("statePicArray: " + statePicArray.length);
+    //  console.log("stimShown: " + stimShown);
+    console.log("stimWordShown: " + stimWordShown);
 
-    if (correct == 1) {
+    if (correct === 1) {
       //remove the correct stimlus from the array
-      statePicArrayLeft = statePicArray.filter(function (val) {
-        return val !== stimShown;
-      });
       stateWordArrayLeft = stateWordArray.filter(function (val) {
         return val !== stimWordShown;
       });
+      statePicArrayLeft = statePicArray.filter(function (val) {
+        return val !== stimShown;
+      });
+
+      console.log("CORRECT!!");
     } else {
       //if not correct, keep it in
       stateWordArrayLeft = stateWordArray;
       statePicArrayLeft = statePicArray;
+      console.log("INCORRECT!!");
     }
     console.log("stateWordArrayLeft: " + stateWordArrayLeft);
     console.log("stateWordArrayLeft: " + stateWordArrayLeft.length);
-    console.log("statePicArrayLeft: " + statePicArrayLeft.length);
+    //  console.log("statePicArrayLeft: " + statePicArrayLeft.length);
 
     this.setState({
-      responseKey: keyPressed,
-      choice: choice,
-      respTime: respTime,
-      correct: correct,
       stateWordArray: stateWordArrayLeft,
       statePicArray: statePicArrayLeft,
     });
@@ -427,9 +445,9 @@ class MetaMemPreTut extends React.Component {
       <div>
         <span>
           As there are many animals, we will first get you familar with what
-          they are called before the main task. We will show you one picture at
-          one time. You will have to <strong>select the correct name</strong> of
-          the animal that is shown.
+          they are called. We will show you one picture at one time. You will
+          have to <strong>select the correct name</strong> of the animal that is
+          shown.
         </span>
         <br />
         <br />
@@ -516,6 +534,16 @@ class MetaMemPreTut extends React.Component {
           all the names of the animals.
           <br />
           <br />
+          As a reminder:
+          <br />
+          <br />
+          <strong>Press W</strong> to choose the animal on the{" "}
+          <strong>left</strong>.
+          <br />
+          <strong>Press O</strong> to choose the animal on the{" "}
+          <strong>right</strong>.
+          <br />
+          <br />
           <center>
             Press [<strong>SPACEBAR</strong>] to begin.
           </center>
@@ -529,27 +557,11 @@ class MetaMemPreTut extends React.Component {
           Well done! You are familar with what the animals are called.
           <br />
           <br />
-          Let's move on to the main task.
+          Let us move on to the main task.
           <br />
           <br />
           <center>
             Press [<strong>SPACEBAR</strong>] to continue.
-          </center>
-        </span>
-      </div>
-    );
-
-    let instruct_text7 = (
-      <div>
-        <span>
-          You took too long to complete this task!
-          <br />
-          <br />
-          Unforuntately, you are not eligble to continue on to the main task.
-          <br />
-          <br />
-          <center>
-            Press [<strong>SPACEBAR</strong>] to exit.
           </center>
         </span>
       </div>
@@ -568,8 +580,7 @@ class MetaMemPreTut extends React.Component {
         return <div>{instruct_text5}</div>;
       case 6:
         return <div>{instruct_text6}</div>;
-      case 7:
-        return <div>{instruct_text7}</div>;
+
       default:
     }
   }
@@ -622,10 +633,6 @@ class MetaMemPreTut extends React.Component {
     var stimWord = this.state.stateWordArray;
     utils.shuffleSame(stim, stimWord);
 
-    var stimNumLeft = stim.length; //this should change if correct on prev trial
-    console.log("trialNum: " + trialNum);
-    console.log("stimNumLeft: " + stimNumLeft);
-
     stim = stim.filter(function (val) {
       return val !== undefined;
     });
@@ -633,60 +640,76 @@ class MetaMemPreTut extends React.Component {
       return val !== undefined;
     });
 
+    var stimNumLeft = stim.length; //this should change if correct on prev trial
+    console.log("trialNum: " + trialNum);
+    console.log("stimNumLeft: " + stimNumLeft);
+
+    var stimPick;
+    var stimWordPick;
+    var stimPickShown;
+    var stimWordPickShown;
+    var choicePickShown;
+    var choiceWordPickShown;
+
     if (stimNumLeft > 1) {
       //pick the number of stim to be shown, plus 1 more for the other option of 2AFC
       //here, I cut out the last two elements in the array
       var stimPickNum = 2;
-      var stimPick = stim.slice([-stimPickNum]);
-      var stimWordPick = stimWord.slice([-stimPickNum]);
+      stimPick = stim.slice([-stimPickNum]);
+      stimWordPick = stimWord.slice([-stimPickNum]);
 
       //console.log("stimPick: " + stimPick);
       console.log("stimWordPick: " + stimWordPick);
 
       //this is the stim that is shown - cut the first option out
-      var stimPicShown = stimPick.slice(0, 1);
-      var stimWordPicShown = stimWordPick.slice(0, 1);
+      stimPickShown = stimPick.slice(0, 1);
+      stimWordPickShown = stimWordPick.slice(0, 1);
 
-      //  utils.shuffleSame(stimPicShown, stimWordPicShown); //shuffle the order shown
+      //  utils.shuffleSame(stimPickShown, stimWordPickShown); //shuffle the order shown
 
-      //    stimPicShown = stimPicShown.filter(function (val) {
+      //    stimPickShown = stimPickShown.filter(function (val) {
       //      return val !== undefined;
       //    });
-      //    stimWordPicShown = stimWordPicShown.filter(function (val) {
+      //    stimWordPickShown = stimWordPickShown.filter(function (val) {
       //      return val !== undefined;
       //    });
 
       //this is the stim for the 2AFC - this takes the last two...stimPick is actually already length=2
-      //    var choicePickShown = stimPick.slice(-2);
-      var choiceWordPickShown = stimWordPick.slice(-2);
-    } else if (stimNumLeft == 1) {
+      choicePickShown = stimPick.slice(-2);
+      choiceWordPickShown = stimWordPick.slice(-2);
+    } else if (stimNumLeft === 1) {
       //if there is only one more stimulus in the array, then...
-      var stimPick = stim;
-      var stimWordPick = stimWord;
+      stimPick = stim;
+      stimWordPick = stimWord;
 
       //this is the stim that is shown - cut the first option out (no cutting here actually since stim.length is 1)
-      var stimPicShown = stimPick.slice(0, 1);
-      var stimWordPicShown = stimWordPick.slice(0, 1);
+      stimPickShown = stimPick.slice(0, 1);
+      stimWordPickShown = stimWordPick.slice(0, 1);
 
       //this is the stim for the 2AFC - I add one pic and one word at the end for the alternative ans
-      var choicePickShown = stimPick.concat("bee");
-      var choiceWordPickShown = stimWordPick.concat("bee");
+      choicePickShown = stimPick.concat("bee");
+      choiceWordPickShown = stimWordPick.concat("bee");
+
+      console.log("stimPick " + stimPick);
+
+      console.log("stimWordPickShown " + stimWordPickShown);
+      console.log("choiceWordPickShown " + choiceWordPickShown);
     } else {
       //if there is NO MORE!!
-      var stimPick = 0;
-      var stimWordPick = 0;
+      stimPick = 0;
+      stimWordPick = 0;
 
       //this is the stim that is shown - cut the first option out (no cutting here actually since stim.length is 1)
-      var stimPicShown = 0;
-      var stimWordPicShown = 0;
+      stimPickShown = 0;
+      stimWordPickShown = 0;
 
       //this is the stim for the 2AFC - I add one pic and one word at the end for the alternative ans
-      var choicePickShown = [0, 0];
-      var choiceWordPickShown = [0, 0];
+      choicePickShown = [0, 0];
+      choiceWordPickShown = [0, 0];
     }
 
-    //    console.log("stimPicShown: " + stimPicShown);
-    console.log("stimWordPicShown: " + stimWordPicShown);
+    //    console.log("stimPickShown: " + stimPickShown);
+    console.log("stimWordPickShown: " + stimWordPickShown);
 
     //    console.log("choicePickShown: " + choicePickShown);
     console.log("choiceWordPickShown: " + choiceWordPickShown);
@@ -728,8 +751,8 @@ class MetaMemPreTut extends React.Component {
 
       stimPick: stimPick,
       stimWordPick: stimWordPick,
-      stimShown: stimPicShown,
-      stimWordShown: stimWordPicShown,
+      stimShown: stimPickShown,
+      stimWordShown: stimWordPickShown,
       choiceShownWordLeft: choiceShownWordLeft,
       choiceShownWordRight: choiceShownWordRight,
 
@@ -742,22 +765,14 @@ class MetaMemPreTut extends React.Component {
     //  console.log("trialNum: " + this.state.trialNum);
     //  console.log("stimNumLeft: " + this.state.stimNumLeft);
 
-    if (stimNumLeft >= 1 && trialNum <= 100) {
+    if (stimNumLeft >= 1) {
       setTimeout(
         function () {
           this.renderFix();
         }.bind(this),
         0
       );
-    } else if (stimNumLeft >= 1 && trialNum > 100) {
-      // if the trials haven't finished by 99 trials..
-      setTimeout(
-        function () {
-          this.preTutorFail();
-        }.bind(this),
-        0
-      );
-    } else if (stimNumLeft == 0 && trialNum <= 100) {
+    } else if (stimNumLeft === 0) {
       // if the trials have finished all the picutres below 100 trials
       setTimeout(
         function () {
@@ -796,6 +811,7 @@ class MetaMemPreTut extends React.Component {
       instructScreen: false,
       taskScreen: true,
       taskSection: "stimChoice",
+      fixTime: fixTime,
     });
   }
 
@@ -818,7 +834,7 @@ class MetaMemPreTut extends React.Component {
       choiceFbRight = style.choiceWord;
     }
 
-    console.log("choice: " + choice);
+    //  console.log("choice: " + choice);
 
     this.setState({
       instructScreen: false,
@@ -900,14 +916,13 @@ class MetaMemPreTut extends React.Component {
 
       trialTime: this.state.trialTime,
       fixTime: this.state.fixTime,
-      stimTime: this.state.stimTime,
 
       statePicArray: this.state.statePicArray,
       stateWordArray: this.state.stateWordArray,
       stimPick: this.state.stimPick,
       stimWordPick: this.state.stimWordPick,
-      stimShown: this.state.stimPicShown,
-      stimWordShown: this.state.stimWordPicShown,
+      stimShown: this.state.stimPickShown,
+      stimWordShown: this.state.stimWordPickShown,
       choiceShownWordLeft: this.state.choiceShownWordLeft,
       choiceShownWordRight: this.state.choiceShownWordRight,
 
@@ -916,11 +931,7 @@ class MetaMemPreTut extends React.Component {
       respFbTime: this.state.respFbTime,
       rewFbTime: this.state.rewFbTime,
       choice: this.state.choice,
-      confLevel: this.state.confLevel,
-      confTime: this.state.confTime,
       correct: this.state.correct,
-      correctMat: this.state.correctMat,
-      correctPer: this.state.correctPer,
     };
 
     // try {
@@ -987,8 +998,8 @@ class MetaMemPreTut extends React.Component {
         document.addEventListener("keyup", this._handleInstructKey);
         document.addEventListener("keyup", this._handleBeginKey);
         text = <div> {this.instructText(this.state.instructNum)}</div>;
-        console.log("THIS SHOULD BE INSTRUCTION BLOCK");
-        console.log("instructNum: " + this.state.instructNum);
+        //  console.log("THIS SHOULD BE INSTRUCTION BLOCK");
+        //  console.log("instructNum: " + this.state.instructNum);
       } else if (
         this.state.instructScreen === false &&
         this.state.taskScreen === true &&
@@ -1028,7 +1039,6 @@ class MetaMemPreTut extends React.Component {
             <br />
             <br />
             <br />
-            <br />
             <span className={style.choiceWord}>
               {this.state.choiceShownWordLeft}
             </span>
@@ -1059,7 +1069,6 @@ class MetaMemPreTut extends React.Component {
             <br />
             <br />
             <br />
-            <br />
             <span className={this.state.choiceFbLeft}>
               {this.state.choiceShownWordLeft}
             </span>
@@ -1086,7 +1095,6 @@ class MetaMemPreTut extends React.Component {
                 alt="stim1"
               />{" "}
             </center>
-            <br />
             <br />
             <br />
             <br />

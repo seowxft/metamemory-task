@@ -438,17 +438,17 @@ class MetaMemTask extends React.Component {
       <div>
         <span>
           The spaceship needs to be repaired quickly - we need your help to sort
-          the tools!
+          the animals!
           <br /> <br />
-          You will have {this.state.trialNumTotal} sets of tools to make your
+          You will have {this.state.trialNumTotal} sets of animals to make your
           choice. This will be split over {this.state.blockNumTotal} sections
-          with {this.state.trialNumPerBlock} sets of tools each so that you can
-          take breaks in between.
+          with {this.state.trialNumPerBlock} sets of animals each so that you
+          can take breaks in between.
           <br /> <br />
-          If the tool on the <strong>left</strong> was shown previously,{" "}
+          If the animal on the <strong>left</strong> was shown previously,{" "}
           <strong>press W</strong>.
           <br /> <br />
-          If the tool on the <strong>right</strong> was shown previously,{" "}
+          If the animal on the <strong>right</strong> was shown previously,{" "}
           <strong> press O</strong>.
           <br /> <br />
           Please respond quickly and to the best of your ability. This time, you{" "}
@@ -473,7 +473,7 @@ class MetaMemTask extends React.Component {
           Please do your best to rate your confidence accurately and do take
           advantage of the <strong>whole length</strong> of the rating scale.
           <br /> <br />
-          You will not be allowed to move on to the next set of batteries if you
+          You will not be allowed to move on to the next set of animals if you
           do not adjust the rating scale.
           <br /> <br />
           If you do well in the task, you can receive up to{" "}
@@ -513,7 +513,7 @@ class MetaMemTask extends React.Component {
           Amazing!
           <br />
           <br />
-          You have completed sorting through all of the tools!
+          You have completed catelouging all of the animals!
           <br />
           <br />
           <center>
@@ -526,8 +526,7 @@ class MetaMemTask extends React.Component {
     let instruct_text5 = (
       <div>
         <span>
-          Whew! Our spaceship is now fixed, thanks to the tools that you have
-          selected.
+          Whew! We have sorted all the animals back, thanks for your effort.
           <br />
           <br />
           <center>
@@ -557,7 +556,7 @@ class MetaMemTask extends React.Component {
       <div>
         <center>
           Before we begin, how well do you think you will be able to remember
-          all the tools correctly?
+          all the animals correctly?
         </center>
         <br />
         <br />
@@ -574,7 +573,8 @@ class MetaMemTask extends React.Component {
         <br />
         <br />
         <center>
-          Press [SPACEBAR] to submit your answer and start sorting the tools.
+          Press [SPACEBAR] to submit your answer and start catelouging the
+          animals.
           <br />
           <br />
           You will not allowed to move on unless you have adjusted the scale.
@@ -585,8 +585,8 @@ class MetaMemTask extends React.Component {
     let quiz_text2 = (
       <div>
         <center>
-          After going through all the tools, how well did you think you selected
-          the tool you remembered correctly?
+          After going through all the animals, how well did you think you
+          selected the animal you remembered correctly?
         </center>
         <br />
         <br />
@@ -768,7 +768,7 @@ class MetaMemTask extends React.Component {
       responseKey: 0,
       respTime: 0,
       respFbTime: 0,
-      confInitial:null,
+      confInitial: null,
       confLevel: null,
       confTime: 0,
 
@@ -1115,6 +1115,16 @@ class MetaMemTask extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
+
+    var statePic = this.state.statePic;
+
+    [statePic].forEach((image) => {
+      new Image().src = image;
+    });
+
+    this.setState({
+      statePic: statePic,
+    });
   }
 
   renderImages(number, imageArray) {
@@ -1177,7 +1187,7 @@ class MetaMemTask extends React.Component {
       ) {
         text = (
           <div className={style.boxStyle}>
-            <center>Memorise these tools:</center>
+            <center>Memorise these animals:</center>
             <br />
             <br />
             <br />
@@ -1201,7 +1211,7 @@ class MetaMemTask extends React.Component {
       ) {
         text = (
           <div className={style.boxStyle}>
-            <center>Which tool was shown?</center>
+            <center>Which animal was shown?</center>
             <br />
             <br />
             <br />
@@ -1227,7 +1237,7 @@ class MetaMemTask extends React.Component {
       ) {
         text = (
           <div className={style.boxStyle}>
-            <center>Which tool was shown?</center>
+            <center>Which animal was shown?</center>
             <br />
             <br />
             <br />
