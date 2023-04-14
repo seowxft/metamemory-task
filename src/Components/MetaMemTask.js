@@ -780,6 +780,8 @@ class MetaMemTask extends React.Component {
 
       stimShown: stimPickShown,
       stimWordShown: stimWordPickShown,
+      choiceShownWordStim1: choiceWordPickShown[0],
+      choiceShownWordStim2: choiceWordPickShown[1],
       choiceShownWordLeft: choiceShownWordLeft,
       choiceShownWordRight: choiceShownWordRight,
 
@@ -949,6 +951,7 @@ class MetaMemTask extends React.Component {
     console.log("trialNumInBlock Save: " + this.state.trialNumInBlock);
 
     var userID = this.state.userID;
+    var stimPickShown = this.state.stimPickShown.substring(0, 50);
 
     let saveString = {
       userID: this.state.userID,
@@ -959,48 +962,54 @@ class MetaMemTask extends React.Component {
       trialNum: this.state.trialNum,
       blockNum: this.state.blockNum,
       trialNumInBlock: this.state.trialNumInBlock,
+      choicePos: this.state.choicePos,
+      choiceCor: this.state.choiceCor,
+
       trialTime: this.state.trialTime,
       fixTime: this.state.fixTime,
       stimTime: this.state.stimTime,
       encodeTime: this.state.encodeTime,
-
-      stimPick: this.state.stimPick,
-      stimWordPick: this.state.stimWordPick,
-      stimShown: this.state.stimPickShown,
-      stimWordShown: this.state.stimWordPickShown,
-      choiceShownWordLeft: this.state.choiceShownWordLeft,
-      choiceShownWordRight: this.state.choiceShownWordRight,
-
-      responseKey: this.state.responseKey,
       respTime: this.state.respTime,
       respFbTime: this.state.respFbTime,
-      choice: this.state.choice,
-      confInitial: this.state.confInitial,
-      confLevel: this.state.confLevel,
       confTime: this.state.confTime,
+      responseKey: this.state.responseKey,
+      choice: this.state.choice,
+
       correct: this.state.correct,
       correctMat: this.state.correctMat,
       correctPer: this.state.correctPer,
 
+      confInitial: this.state.confInitial,
+      confLevel: this.state.confLevel,
       // staircase parameters
       responseMatrix: this.state.responseMatrix,
       reversals: this.state.reversals,
       stairDir: this.state.stairDir,
       stimNum: this.state.stimNum,
+
+      stimPick: this.state.stimPick,
+      stimWordPick: stimPickShown,
+      stimShown: this.state.stimPickShown,
+      stimWordShown: this.state.stimWordPickShown,
+
+      choiceShownWordStim1: this.state.choiceShownWordStim1,
+      choiceShownWordStim2: this.state.choiceShownWordStim2,
+      choiceShownWordLeft: this.state.choiceShownWordLeft,
+      choiceShownWordRight: this.state.choiceShownWordRight,
     };
 
-    // try {
-    //   fetch(`${DATABASE_URL}/task_data/` + userID, {
-    //     method: "POST",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(saveString),
-    //   });
-    // } catch (e) {
-    //   console.log("Cant post?");
-    // }
+    try {
+      fetch(`${DATABASE_URL}/mem_task_data/` + userID, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(saveString),
+      });
+    } catch (e) {
+      console.log("Cant post?");
+    }
 
     console.log("trialNum: " + this.state.trialNum);
     console.log("trialNumPerBlock: " + this.state.trialNumPerBlock);

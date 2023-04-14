@@ -1177,6 +1177,8 @@ class MetaMemTut extends React.Component {
       stimWordPick: stimWordPick,
       stimShown: stimPickShown,
       stimWordShown: stimWordPickShown,
+      choiceShownWordStim1: choiceWordPickShown[0],
+      choiceShownWordStim2: choiceWordPickShown[1],
       choiceShownWordLeft: choiceShownWordLeft,
       choiceShownWordRight: choiceShownWordRight,
 
@@ -1382,6 +1384,8 @@ class MetaMemTut extends React.Component {
   renderTutorSave() {
     var userID = this.state.userID;
 
+    var stimPickShown = this.state.stimPickShown.substring(0, 50);
+
     let saveString = {
       userID: this.state.userID,
       date: this.state.date,
@@ -1389,43 +1393,51 @@ class MetaMemTut extends React.Component {
       section: this.state.section,
       sectionTime: this.state.sectionTime,
       trialNum: this.state.trialNum,
-      stimNum: this.state.stimNum,
+
+      choicePos: this.state.choicePos,
+      choiceCor: this.state.choiceCor,
       trialTime: this.state.trialTime,
       fixTime: this.state.fixTime,
       stimTime: this.state.stimTime,
       encodeTime: this.state.encodeTime,
-
-      stimPick: this.state.stimPick,
-      stimWordPick: this.state.stimWordPick,
-      stimShown: this.state.stimPickShown,
-      stimWordShown: this.state.stimWordPickShown,
-      choiceShownWordLeft: this.state.choiceShownWordLeft,
-      choiceShownWordRight: this.state.choiceShownWordRight,
-
-      responseKey: this.state.responseKey,
       respTime: this.state.respTime,
       respFbTime: this.state.respFbTime,
       rewFbTime: this.state.rewFbTime,
-      choice: this.state.choice,
-      confLevel: this.state.confLevel,
       confTime: this.state.confTime,
+      responseKey: this.state.responseKey,
+      choice: this.state.choice,
       correct: this.state.correct,
       correctMat: this.state.correctMat,
       correctPer: this.state.correctPer,
+      confLevel: this.state.confLevel,
+
+      stimNum: this.state.stimNum,
+      responseMatrix: this.state.responseMatrix,
+      reversals: this.state.reversals,
+      stairDir: this.state.stairDir,
+
+      stimPick: this.state.stimPick,
+      stimWordPick: this.state.stimWordPick,
+      stimShown: stimPickShown,
+      stimWordShown: this.state.stimWordPickShown,
+      choiceShownWordStim1: this.state.choiceShownWordStim1,
+      choiceShownWordStim2: this.state.choiceShownWordStim2,
+      choiceShownWordLeft: this.state.choiceShownWordLeft,
+      choiceShownWordRight: this.state.choiceShownWordRight,
     };
 
-    // try {
-    //   fetch(`${DATABASE_URL}/tutorial_data/` + userID, {
-    //     method: "POST",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(saveString),
-    //   });
-    // } catch (e) {
-    //   console.log("Cant post?");
-    // }
+    try {
+      fetch(`${DATABASE_URL}/mem_tutorial_data/` + userID, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(saveString),
+      });
+    } catch (e) {
+      console.log("Cant post?");
+    }
 
     setTimeout(
       function () {
@@ -1448,25 +1460,27 @@ class MetaMemTut extends React.Component {
       quizTry: this.state.quizTry,
       quizNumTotal: this.state.quizNumTotal,
       quizNum: this.state.quizNum,
-      trialTime: this.state.trialTime,
-      quizPressed: this.state.quizPressed,
-      quizTime: this.state.quizTime,
+
+      quizTime: this.state.trialTime,
+      quizResp: this.state.quizPressed,
+      quizRT: this.state.quizTime,
+      quizAns: this.state.quizAns,
       quizCor: this.state.quizCor,
       quizCorTotal: this.state.quizCorTotal,
     };
 
-    // try {
-    //   fetch(`${DATABASE_URL}/quiz_test/` + userID, {
-    //     method: "POST",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(saveString),
-    //   });
-    // } catch (e) {
-    //   console.log("Cant post?");
-    // }
+    try {
+      fetch(`${DATABASE_URL}/mem_quiz_test/` + userID, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(saveString),
+      });
+    } catch (e) {
+      console.log("Cant post?");
+    }
 
     setTimeout(
       function () {

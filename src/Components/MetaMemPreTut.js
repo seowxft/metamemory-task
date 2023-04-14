@@ -905,6 +905,9 @@ class MetaMemPreTut extends React.Component {
   renderPreTutorSave() {
     var userID = this.state.userID;
 
+    var stimPickShown = this.state.stimPickShown.substring(0, 50);
+    var statePicArray = this.state.statePicArray.substring(0, 50);
+
     let saveString = {
       userID: this.state.userID,
       date: this.state.date,
@@ -913,39 +916,40 @@ class MetaMemPreTut extends React.Component {
       sectionTime: this.state.sectionTime,
       trialNum: this.state.trialNum,
       stimNumLeft: this.state.stimNumLeft,
+      choiceCor: this.state.choiceCor,
+      choicePos: this.state.choicePos,
 
       trialTime: this.state.trialTime,
       fixTime: this.state.fixTime,
-
-      statePicArray: this.state.statePicArray,
-      stateWordArray: this.state.stateWordArray,
-      stimPick: this.state.stimPick,
-      stimWordPick: this.state.stimWordPick,
-      stimShown: this.state.stimPickShown,
-      stimWordShown: this.state.stimWordPickShown,
-      choiceShownWordLeft: this.state.choiceShownWordLeft,
-      choiceShownWordRight: this.state.choiceShownWordRight,
-
-      responseKey: this.state.responseKey,
       respTime: this.state.respTime,
       respFbTime: this.state.respFbTime,
       rewFbTime: this.state.rewFbTime,
+      responseKey: this.state.responseKey,
       choice: this.state.choice,
       correct: this.state.correct,
+
+      statePicArray: statePicArray,
+      stateWordArray: this.state.stateWordArray,
+      stimPick: this.state.stimPick,
+      stimWordPick: this.state.stimWordPick,
+      stimShown: stimPickShown,
+      stimWordShown: this.state.stimWordPickShown,
+      choiceShownWordLeft: this.state.choiceShownWordLeft,
+      choiceShownWordRight: this.state.choiceShownWordRight,
     };
 
-    // try {
-    //   fetch(`${DATABASE_URL}/tutorial_data/` + userID, {
-    //     method: "POST",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(saveString),
-    //   });
-    // } catch (e) {
-    //   console.log("Cant post?");
-    // }
+    try {
+      fetch(`${DATABASE_URL}/mem_pretutorial_data/` + userID, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(saveString),
+      });
+    } catch (e) {
+      console.log("Cant post?");
+    }
 
     setTimeout(
       function () {
