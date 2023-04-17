@@ -4,8 +4,7 @@ import style from "./style/taskStyle.module.css";
 import * as utils from "./utils.js";
 import withRouter from "./withRouter.js";
 import astrodude from "./img/astronaut.png";
-
-//import { DATABASE_URL } from "./config";
+import { DATABASE_URL } from "./config";
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -905,8 +904,11 @@ class MetaMemPreTut extends React.Component {
   renderPreTutorSave() {
     var userID = this.state.userID;
 
-    var stimPickShown = this.state.stimPickShown.substring(0, 50);
-    var statePicArray = this.state.statePicArray.substring(0, 50);
+    //  var stimPickShown = this.state.stimPickShown.substring(0, 50);
+    //  var statePicArray = this.state.statePicArray.substring(0, 50);
+
+    var stimPickShown = null;
+    var statePicArray = null;
 
     let saveString = {
       userID: this.state.userID,

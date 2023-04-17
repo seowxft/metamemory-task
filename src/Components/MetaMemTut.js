@@ -7,7 +7,7 @@ import * as utils from "./utils.js";
 import withRouter from "./withRouter.js";
 import astrodude from "./img/astronaut.png";
 
-//import { DATABASE_URL } from "./config";
+import { DATABASE_URL } from "./config";
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -803,7 +803,7 @@ class MetaMemTut extends React.Component {
         <br />
         During the main task, once you have selected your rating, you will have
         to press the [<strong>SPACEBAR</strong>] to confirm it and move on to
-        the next set of battery cards.
+        the next set of animals.
         <br />
         <br />
         <center>
@@ -915,7 +915,7 @@ class MetaMemTut extends React.Component {
     let quiz_text3 = (
       <div>
         <strong>Q{this.state.quizNum}:</strong> You have made your choice on the
-        battery card with the higher charge. However, you are{" "}
+        animal you think you saw previously. However, you are{" "}
         <strong>very unsure</strong> about your choice. How would you rate your
         confidence on the rating scale?
         <br />
@@ -932,9 +932,9 @@ class MetaMemTut extends React.Component {
 
     let quiz_text4 = (
       <div>
-        <strong>Q{this.state.quizNum}:</strong> On the next set of battery
-        cards, you are <strong>very sure</strong> about your choice. How would
-        you rate your confidence on the rating scale?
+        <strong>Q{this.state.quizNum}:</strong> On the next set of animals, you
+        are <strong>very sure</strong> about your choice. How would you rate
+        your confidence on the rating scale?
         <br />
         <br />
         [1] - I would pick the left end of the scale (50% correct).
@@ -949,9 +949,9 @@ class MetaMemTut extends React.Component {
 
     let quiz_text5 = (
       <div>
-        <strong>Q{this.state.quizNum}:</strong> On the next set of battery
-        cards, you are <strong>somewhat sure</strong> about your choice. How
-        would you rate your confidence on the rating scale?
+        <strong>Q{this.state.quizNum}:</strong> On the next set of animals, you
+        are <strong>somewhat sure</strong> about your choice. How would you rate
+        your confidence on the rating scale?
         <br />
         <br />
         [1] - I would pick the left end of the scale (50% correct).
@@ -1384,7 +1384,8 @@ class MetaMemTut extends React.Component {
   renderTutorSave() {
     var userID = this.state.userID;
 
-    var stimPickShown = this.state.stimPickShown.substring(0, 50);
+    //  var stimPickShown = this.state.stimPickShown.substring(0, 50);
+    var stimPickShown = null;
 
     let saveString = {
       userID: this.state.userID,

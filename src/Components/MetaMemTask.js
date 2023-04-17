@@ -7,7 +7,7 @@ import withRouter from "./withRouter.js";
 import * as ConfSlider from "./DrawConfSlider.js";
 import * as ConfSliderGlobal from "./DrawConfSliderGlobal.js";
 
-//import { DATABASE_URL } from "./config";
+import { DATABASE_URL } from "./config";
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -555,8 +555,8 @@ class MetaMemTask extends React.Component {
     let quiz_text1 = (
       <div>
         <center>
-          Before we begin, how well do you think you will be able to remember
-          all the animals correctly?
+          Before we begin, how well do you think you will be able to select the
+          correct animals?
         </center>
         <br />
         <br />
@@ -586,7 +586,7 @@ class MetaMemTask extends React.Component {
       <div>
         <center>
           After going through all the animals, how well did you think you
-          selected the animal you remembered correctly?
+          selected the correct animal overall?
         </center>
         <br />
         <br />
@@ -951,8 +951,8 @@ class MetaMemTask extends React.Component {
     console.log("trialNumInBlock Save: " + this.state.trialNumInBlock);
 
     var userID = this.state.userID;
-    var stimPickShown = this.state.stimPickShown.substring(0, 50);
-
+    //  var stimPickShown = this.state.stimPickShown.substring(0, 50);
+    var stimPickShown = null;
     let saveString = {
       userID: this.state.userID,
       date: this.state.date,
@@ -1065,18 +1065,18 @@ class MetaMemTask extends React.Component {
       confLevel: this.state.confLevel,
     };
 
-    // try {
-    //   fetch(`${DATABASE_URL}/prepost_conf/` + userID, {
-    //     method: "POST",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(saveString),
-    //   });
-    // } catch (e) {
-    //   console.log("Cant post?");
-    // }
+    try {
+      fetch(`${DATABASE_URL}/prepost_conf/` + userID, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(saveString),
+      });
+    } catch (e) {
+      console.log("Cant post?");
+    }
 
     if (this.state.quizState === "pre") {
       // begin the task

@@ -7,6 +7,8 @@ import MetaMemPreTut from "./Components/MetaMemPreTut";
 import MetaMemTut from "./Components/MetaMemTut";
 import MetaMemTask from "./Components/MetaMemTask";
 import Bonus from "./Components/Bonus";
+import Questionnaires from "./Components/Questionnaires";
+import End from "./Components/EndPage";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
       <Route path="MetaMemTut" element={<MetaMemTut />} />
       <Route path="MetaMemTask" element={<MetaMemTask />} />
       <Route path="Bonus" element={<Bonus />} />
+      <Route path="Questionnaires" element={<Questionnaires />} />
+      <Route path="End" element={<End />} />
     </Routes>
   );
 }

@@ -219,7 +219,7 @@ class Bonus extends React.Component {
   instructText(instructNum) {
     let instruct_text1 = (
       <div>
-        Well done on completing both tasks!
+        Well done on completing the tasks!
         <br />
         <br />
         How much did you feel that your confidence changed after you performed
