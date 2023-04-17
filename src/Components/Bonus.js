@@ -1,9 +1,10 @@
 import React from "react";
 import style from "./style/taskStyle.module.css";
 import withRouter from "./withRouter.js";
+import * as InsightSlider from "./DrawInsightSlider.js";
 import astrodude from "./img/astronaut.png";
 
-//import { DATABASE_URL } from "./config";
+import { DATABASE_URL } from "./config";
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +25,6 @@ class Bonus extends React.Component {
     //  const userID = 100;
     //  const date = 100;
     //  const startTime = 100;
-    //  const correctPer = 0.7;
 
     const userID = this.props.state.userID;
     const date = this.props.state.date;
@@ -41,7 +41,7 @@ class Bonus extends React.Component {
       userID: userID,
       date: date,
       startTime: startTime,
-      section: "bonus",
+      section: "insight",
       sectionTime: sectionTime,
       astrodude: astrodude,
       ratingInitial: 3,
@@ -81,18 +81,33 @@ class Bonus extends React.Component {
   }
 
   // This handles instruction screen within the component USING KEYBOARD
-  handleInstruct(keyPressed) {
+  handleInstruct(keyPressed, timePressed) {
     var curInstructNum = this.state.instructNum;
-    //  var ratingValue = this.state.ratingValue;
+    var ratingValue = this.state.ratingValue;
     var whichButton = keyPressed;
 
-    console.log(curInstructNum);
+    //  console.log(curInstructNum);
     //  console.log(ratingValue);
 
-    // if (whichButton === 3 && curInstructNum === 1 && ratingValue !== null) {
+    if (whichButton === 3 && curInstructNum === 1 && ratingValue !== null) {
+      var ratingTime = timePressed - this.state.sectionTime;
+
+      this.setState({
+        ratingTime: ratingTime,
+      });
+
+      setTimeout(
+        function () {
+          this.renderRatingSave();
+        }.bind(this),
+        0
+      );
+    }
+
+    // else if (whichButton === 3 && curInstructNum === 2) {
     //   setTimeout(
     //     function () {
-    //       this.renderRatingSave();
+    //       this.redirectToNextTask();
     //     }.bind(this),
     //     0
     //   );
@@ -102,12 +117,14 @@ class Bonus extends React.Component {
   // handle key keyPressed
   _handleInstructKey = (event) => {
     var keyPressed;
+    var timePressed;
 
     switch (event.keyCode) {
       case 32:
         //    this is spacebar
         keyPressed = 3;
-        this.handleInstruct(keyPressed);
+        timePressed = Math.round(performance.now());
+        this.handleInstruct(keyPressed, timePressed);
         break;
       default:
     }
@@ -126,74 +143,110 @@ class Bonus extends React.Component {
       startTime: this.state.startTime,
       section: this.state.section,
       sectionTime: this.state.sectionTime,
+      ratingTime: null,
       ratingValue: null,
       totalBonus: null,
       feedback: this.state.feedback,
     };
 
-    // try {
-    //   fetch(`${DATABASE_URL}/feedback/` + userID, {
-    //     method: "POST",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(feedback),
-    //   });
-    // } catch (e) {
-    //   console.log("Cant post?");
-    // }
+    try {
+      fetch(`${DATABASE_URL}/feedback/` + userID, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(feedback),
+      });
+    } catch (e) {
+      console.log("Cant post?");
+    }
 
     alert("Thanks for your feedback!");
     event.preventDefault();
   }
 
-  // renderRatingSave() {
-  //   var userID = this.state.userID;
-  //
-  //   let saveString = {
-  //     userID: this.state.userID,
-  //     date: this.state.date,
-  //     startTime: this.state.startTime,
-  //     section: this.state.section,
-  //     sectionTime: this.state.sectionTime,
-  //     ratingValue: this.state.ratingValue,
-  //     totalBonus: this.state.totalBonus,
-  //     feedback: null,
-  //   };
-  //
-  //   try {
-  //     fetch(`${DATABASE_URL}/feedback/` + userID, {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(saveString),
-  //     });
-  //   } catch (e) {
-  //     console.log("Cant post?");
-  //   }
-  //
-  //   setTimeout(
-  //     function () {
-  //       this.nextPg();
-  //     }.bind(this),
-  //     0
-  //   );
-  // }
-  //
-  // nextPg() {
-  //   this.setState({
-  //     instructNum: this.state.instructNum + 1,
-  //     section: "feedback",
-  //   });
-  // }
+  renderRatingSave() {
+    var userID = this.state.userID;
 
+    let saveString = {
+      userID: this.state.userID,
+      date: this.state.date,
+      startTime: this.state.startTime,
+      section: this.state.section,
+      sectionTime: this.state.sectionTime,
+      ratingTime: this.state.ratingTime,
+      ratingValue: this.state.ratingValue,
+      totalBonus: this.state.totalBonus,
+      feedback: null,
+    };
+
+    try {
+      fetch(`${DATABASE_URL}/feedback/` + userID, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(saveString),
+      });
+    } catch (e) {
+      console.log("Cant post?");
+    }
+
+    setTimeout(
+      function () {
+        this.nextPg();
+      }.bind(this),
+      0
+    );
+  }
+
+  nextPg() {
+    this.setState({
+      instructNum: this.state.instructNum + 1,
+      section: "feedback",
+    });
+  }
   // To ask them for the valence rating of the noises
   // before we start the task
+
+  // This question is meant to be the insight qn when I have two tasks: How much did you feel that your confidence in the first task influenced
+  // your confidence on the second task?
+
+  //I change it here to reflect on their first vs end global rating
+  //lso need to change the slider x axis ticks if change back
   instructText(instructNum) {
     let instruct_text1 = (
+      <div>
+        Well done on completing both tasks!
+        <br />
+        <br />
+        How much did you feel that your confidence changed after you performed
+        the task?
+        <br />
+        <br />
+        <br />
+        <br />
+        <center>
+          <InsightSlider.InsightSlider
+            callBackValue={this.handleCallbackConf.bind(this)}
+            initialValue={this.state.ratingInitial}
+          />
+          <br />
+          <br />
+          <center></center>
+          Press the [SPACEBAR] to continue.
+          <br /> <br />
+          You will need to have moved the slider to continue.
+        </center>
+        <span className={style.astro}>
+          <img src={this.state.astrodude} width={280} alt="astrodude" />
+        </span>
+      </div>
+    );
+
+    let instruct_text2 = (
       <div>
         <span>
           From the task, you earned a bonus of £{this.state.totalBonus}.
@@ -209,7 +262,7 @@ class Bonus extends React.Component {
             <form onSubmit={this.handleSubmit}>
               <label>
                 <textarea
-                  placeholder=" Were the task instructions clear? Did you encounter any problems?"
+                  placeholder=" Were the task instructions clear? Did you encounter any problems? Did you prefer to use the mouse or the keyboard to rate your confidence?"
                   value={this.state.feedback}
                   onChange={this.handleChange}
                 />
@@ -220,6 +273,12 @@ class Bonus extends React.Component {
             </form>
           </center>
           <br /> <br />
+          <center>
+            Press the button below to continue.
+            <br />
+            <br />
+            <button onClick={this.redirectToNextTask.bind(this)}>Next</button>
+          </center>
         </span>
       </div>
     );
@@ -228,23 +287,24 @@ class Bonus extends React.Component {
     switch (instructNum) {
       case 1:
         return <div>{instruct_text1}</div>;
-
+      case 2:
+        return <div>{instruct_text2}</div>;
       default:
     }
   }
 
-  // redirectToNextTask() {
-  //   document.removeEventListener("keyup", this._handleInstructKey);
-  //   this.props.navigate("/Questionnaires", {
-  //     state: {
-  //       userID: this.state.userID,
-  //       date: this.state.date,
-  //       startTime: this.state.startTime,
-  //     },
-  //   });
-  //
-  //   console.log("UserID is: " + this.state.userID);
-  // }
+  redirectToNextTask() {
+    document.removeEventListener("keyup", this._handleInstructKey);
+    this.props.navigate("/Questionnaires", {
+      state: {
+        userID: this.state.userID,
+        date: this.state.date,
+        startTime: this.state.startTime,
+      },
+    });
+
+    //    console.log("UserID: " + this.state.userID);
+  }
 
   componentDidMount() {
     window.scrollTo(0, 0);
