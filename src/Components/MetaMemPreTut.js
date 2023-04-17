@@ -940,6 +940,8 @@ class MetaMemPreTut extends React.Component {
       choiceShownWordRight: this.state.choiceShownWordRight,
     };
 
+    console.log(saveString);
+
     try {
       fetch(`${DATABASE_URL}/mem_pre_tutorial_data/` + userID, {
         method: "POST",
