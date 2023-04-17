@@ -953,7 +953,7 @@ class MetaMemTask extends React.Component {
     var userID = this.state.userID;
     //  var stimPickShown = this.state.stimPickShown.substring(0, 50);
     var stimShown = null;
-
+    var stimPick = null;
     let saveString = {
       userID: this.state.userID,
       date: this.state.date,
@@ -988,7 +988,7 @@ class MetaMemTask extends React.Component {
       stairDir: this.state.stairDir,
       stimNum: this.state.stimNum,
 
-      stimPick: this.state.stimPick,
+      stimPick: stimPick,
       stimWordPick: this.state.stimWordPick,
       stimShown: stimShown,
       stimWordShown: this.state.stimWordShown,

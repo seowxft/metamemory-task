@@ -908,6 +908,7 @@ class MetaMemPreTut extends React.Component {
     //  var statePicArray = this.state.statePicArray.substring(0, 50);
 
     var stimShown = null;
+    var stimPick = null;
     var statePicArray = null;
 
     let saveString = {
@@ -932,7 +933,8 @@ class MetaMemPreTut extends React.Component {
 
       statePicArray: statePicArray,
       stateWordArray: this.state.stateWordArray,
-      stimPick: this.state.stimPick,
+
+      stimPick: stimPick,
       stimWordPick: this.state.stimWordPick,
       stimShown: stimShown,
       stimWordShown: this.state.stimWordShown,

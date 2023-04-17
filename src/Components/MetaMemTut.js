@@ -1392,6 +1392,7 @@ class MetaMemTut extends React.Component {
 
     //  var stimPickShown = this.state.stimPickShown.substring(0, 50);
     var stimShown = null;
+    var stimPick = null;
 
     let saveString = {
       userID: this.state.userID,
@@ -1423,7 +1424,7 @@ class MetaMemTut extends React.Component {
       reversals: this.state.reversals,
       stairDir: this.state.stairDir,
 
-      stimPick: this.state.stimPick,
+      stimPick: stimPick,
       stimWordPick: this.state.stimWordPick,
       stimShown: stimShown,
       stimWordShown: this.state.stimWordShown,
