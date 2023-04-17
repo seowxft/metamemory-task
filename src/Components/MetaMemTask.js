@@ -778,6 +778,8 @@ class MetaMemTask extends React.Component {
       choiceCor: choiceCor,
       choicePos: choicePos,
 
+      stimPick: stimPick,
+      stimWordPick: stimWordPick,
       stimShown: stimPickShown,
       stimWordShown: stimWordPickShown,
       choiceShownWordStim1: choiceWordPickShown[0],
@@ -1067,7 +1069,7 @@ class MetaMemTask extends React.Component {
     };
 
     try {
-      fetch(`${DATABASE_URL}/prepost_conf/` + userID, {
+      fetch(`${DATABASE_URL}/mem_pre_post_conf/` + userID, {
         method: "POST",
         headers: {
           Accept: "application/json",
