@@ -46,6 +46,7 @@ class MetaMemTut extends React.Component {
       .concat(Array(Math.round(trialNumTotal / 2)).fill(2));
     utils.shuffle(choicePos);
 
+    var stateNum = stateWord.length; //26
     //////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////
     // SET STATES
@@ -68,6 +69,7 @@ class MetaMemTut extends React.Component {
       fbTimeLag: 500, //500 correct or wrong
 
       // stimuli
+      stateNum: stateNum,
       stateWord: stateWord,
       statePic: statePic,
       choicePosList: choicePos,
@@ -524,7 +526,11 @@ class MetaMemTut extends React.Component {
         <br />
         <span>
           <center>
-            {this.renderImages(12, this.state.statePic, style.instructStimDis)}
+            {this.renderImages(
+              this.state.stateNum,
+              this.state.statePic,
+              style.instructStimDis
+            )}
           </center>
         </span>
         <br />

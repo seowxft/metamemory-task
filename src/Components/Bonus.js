@@ -164,6 +164,20 @@ class Bonus extends React.Component {
 
     alert("Thanks for your feedback!");
     event.preventDefault();
+
+    setTimeout(
+      function () {
+        this.clearFb();
+      }.bind(this),
+      10
+    );
+  }
+
+  clearFb() {
+    this.setState({
+      feedback: null,
+    });
+    console.log("CLEAR FB");
   }
 
   renderRatingSave() {
