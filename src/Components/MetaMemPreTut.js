@@ -941,7 +941,7 @@ class MetaMemPreTut extends React.Component {
     };
 
     try {
-      fetch(`${DATABASE_URL}/mem_pretutorial_data/` + userID, {
+      fetch(`${DATABASE_URL}/mem_pre_tutorial_data/` + userID, {
         method: "POST",
         headers: {
           Accept: "application/json",
