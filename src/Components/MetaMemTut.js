@@ -1391,7 +1391,7 @@ class MetaMemTut extends React.Component {
     var userID = this.state.userID;
 
     //  var stimPickShown = this.state.stimPickShown.substring(0, 50);
-    var stimPickShown = null;
+    var stimShown = null;
 
     let saveString = {
       userID: this.state.userID,
@@ -1425,8 +1425,8 @@ class MetaMemTut extends React.Component {
 
       stimPick: this.state.stimPick,
       stimWordPick: this.state.stimWordPick,
-      stimShown: stimPickShown,
-      stimWordShown: this.state.stimWordPickShown,
+      stimShown: stimShown,
+      stimWordShown: this.state.stimWordShown,
       choiceShownWordStim1: this.state.choiceShownWordStim1,
       choiceShownWordStim2: this.state.choiceShownWordStim2,
       choiceShownWordLeft: this.state.choiceShownWordLeft,
