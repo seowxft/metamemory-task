@@ -79,7 +79,7 @@ class StartPage extends React.Component {
     const queryParams = new URLSearchParams(window.location.search);
     const prolific_id = queryParams.get("PROLIFIC_PID");
 
-    const userID = this.props.state.userID;
+    var userID = this.props.state.userID;
     if (userID === null) {
       userID = prolific_id;
     }
