@@ -194,7 +194,7 @@ class Questionnaires extends React.Component {
   redirectToNextTask() {
     document.removeEventListener("keyup", this._handleInstructKey);
     document.removeEventListener("keyup", this._handleDebugKey);
-    this.props.navigate("/End", {
+    this.props.navigate("/End?PROLIFIC_PID=" + this.state.userID, {
       state: {
         userID: this.state.userID,
         date: this.state.date,

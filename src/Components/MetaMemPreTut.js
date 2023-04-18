@@ -6,7 +6,6 @@ import withRouter from "./withRouter.js";
 import astrodude from "./img/astronaut.png";
 import { DATABASE_URL } from "./config";
 
-import queryString from "query-string";
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 // THIS CODES THE PRE TASK (PICTURE NAMING) FOR THE TASK
@@ -27,22 +26,9 @@ class MetaMemPreTut extends React.Component {
     //  const date = 100;
     //  const startTime = 100;
 
-    var userID = this.props.state.userID;
-    var date = this.props.state.date;
-    var startTime = this.props.state.startTime;
-
-    const queryParams = new URLSearchParams(window.location.search);
-    const prolific_id = queryParams.get("PROLIFIC_PID");
-
-    if (userID === null) {
-      userID = prolific_id;
-      var currentDate = new Date(); // maybe change to local
-      var day = currentDate.getDate();
-      var month = currentDate.getMonth(); //Be careful! January is 0 not 1
-      var year = currentDate.getFullYear();
-      date = day + "-" + (month + 1) + "-" + year;
-      startTime = currentDate.toTimeString();
-    }
+    const userID = this.props.state.userID;
+    const date = this.props.state.date;
+    const startTime = this.props.state.startTime;
 
     const statePic = this.props.state.statePic;
     const stateWord = this.props.state.stateWord;
@@ -982,7 +968,7 @@ class MetaMemPreTut extends React.Component {
   redirectToNextTask() {
     document.removeEventListener("keyup", this._handleInstructKey);
     document.removeEventListener("keyup", this._handleBeginKey);
-    this.props.navigate("/MetaMemTut", {
+    this.props.navigate("/MetaMemTut?PROLIFIC_PID=" + this.state.userID, {
       state: {
         userID: this.state.userID,
         date: this.state.date,

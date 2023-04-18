@@ -309,7 +309,7 @@ class Bonus extends React.Component {
 
   redirectToNextTask() {
     document.removeEventListener("keyup", this._handleInstructKey);
-    this.props.navigate("/Questionnaires", {
+    this.props.navigate("/Questionnaires?PROLIFIC_PID=" + this.state.userID, {
       state: {
         userID: this.state.userID,
         date: this.state.date,

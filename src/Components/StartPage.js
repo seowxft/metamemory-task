@@ -23,8 +23,6 @@ import gorilla from "./ani-stim/gorilla.jpg";
 import spider from "./ani-stim/spider.jpg";
 //import buffalo from "./ani-stim/waterbuffalo.jpg";
 
-import queryString from "query-string";
-
 ////////////////
 var stateWord = [
   "butterfly",
@@ -76,13 +74,7 @@ class StartPage extends React.Component {
     //  var userID = Math.floor(100000 + Math.random() * 900000);
     //var userID = 120000; //for testing
 
-    const queryParams = new URLSearchParams(window.location.search);
-    const prolific_id = queryParams.get("PROLIFIC_PID");
-
-    var userID = this.props.state.userID;
-    if (userID === null) {
-      userID = prolific_id;
-    }
+    const userID = this.props.state.userID;
 
     // Set state
     this.state = {

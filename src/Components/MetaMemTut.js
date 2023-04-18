@@ -1501,7 +1501,7 @@ class MetaMemTut extends React.Component {
   redirectToNextTask() {
     document.removeEventListener("keyup", this._handleInstructKey);
     document.removeEventListener("keyup", this._handleBeginKey);
-    this.props.navigate("/MetaMemTask", {
+    this.props.navigate("/MetaMemTask?PROLIFIC_PID=" + this.state.userID, {
       state: {
         userID: this.state.userID,
         date: this.state.date,
