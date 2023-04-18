@@ -1033,6 +1033,7 @@ class MetaMemPreTut extends React.Component {
           <div className={style.boxStyle}>
             <br />
             <br />
+
             <center>
               <img
                 className={style.stimDisHide}
@@ -1071,6 +1072,11 @@ class MetaMemPreTut extends React.Component {
             <span className={style.choiceWord}>
               {this.state.choiceShownWordRight}
             </span>
+            <br />
+            <br />
+            <br />
+            <br />
+            <center> </center>
           </div>
         );
       } else if (
@@ -1101,6 +1107,11 @@ class MetaMemPreTut extends React.Component {
             <span className={this.state.choiceFbRight}>
               {this.state.choiceShownWordRight}
             </span>
+            <br />
+            <br />
+            <br />
+            <br />
+            <center> </center>
           </div>
         );
       } else if (
@@ -1131,8 +1142,6 @@ class MetaMemPreTut extends React.Component {
             <span className={this.state.choiceFbRewRight}>
               {this.state.choiceShownWordRight}
             </span>
-            <br />
-            <br />
             <br />
             <br />
             <br />

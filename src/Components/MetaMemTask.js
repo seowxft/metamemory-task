@@ -445,7 +445,7 @@ class MetaMemTask extends React.Component {
     let instruct_text1 = (
       <div>
         <span>
-          The spaceship needs to be repaired quickly - we need your help to sort
+          The spaceship needs to be sorted quickly - we need your help to sort
           the animals!
           <br /> <br />
           You will have {this.state.trialNumTotal} sets of animals to make your
@@ -1196,6 +1196,7 @@ class MetaMemTask extends React.Component {
           <div className={style.boxStyle}>
             <br />
             <br />
+            <DrawFix />
             <center>
               {this.renderImages(
                 this.state.stimNum,
@@ -1203,7 +1204,8 @@ class MetaMemTask extends React.Component {
                 style.stimDisHide
               )}
             </center>
-            <DrawFix />
+            <br />
+            <br />
           </div>
         );
       } else if (
@@ -1224,6 +1226,13 @@ class MetaMemTask extends React.Component {
                 style.instructStimDis
               )}
             </center>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <center></center>
           </div>
         );
       } else if (
@@ -1240,11 +1249,11 @@ class MetaMemTask extends React.Component {
       ) {
         text = (
           <div className={style.boxStyle}>
+            <br />
+            <br />
+            <br />
+            <br />
             <center>Which animal was shown?</center>
-            <br />
-            <br />
-            <br />
-            <br />
             <br />
             <br />
             <br />
@@ -1256,6 +1265,13 @@ class MetaMemTask extends React.Component {
             <span className={style.choiceWord}>
               {this.state.choiceShownWordRight}
             </span>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <center></center>
           </div>
         );
       } else if (
@@ -1266,11 +1282,11 @@ class MetaMemTask extends React.Component {
       ) {
         text = (
           <div className={style.boxStyle}>
+            <br />
+            <br />
+            <br />
+            <br />
             <center>Which animal was shown?</center>
-            <br />
-            <br />
-            <br />
-            <br />
             <br />
             <br />
             <br />
@@ -1282,6 +1298,13 @@ class MetaMemTask extends React.Component {
             <span className={this.state.choiceFbRight}>
               {this.state.choiceShownWordRight}
             </span>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <center></center>
           </div>
         );
       } else if (
@@ -1291,8 +1314,10 @@ class MetaMemTask extends React.Component {
         this.state.taskSection === "confidence"
       ) {
         text = (
-          <div>
+          <div className={style.boxStyle}>
             <center>
+              <br />
+              <br />
               Rate your confidence on the probability that your choice was
               correct:
             </center>

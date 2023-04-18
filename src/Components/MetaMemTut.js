@@ -1577,6 +1577,7 @@ class MetaMemTut extends React.Component {
           <div className={style.boxStyle}>
             <br />
             <br />
+            <DrawFix />
             <center>
               {this.renderImages(
                 this.state.stimNum,
@@ -1584,7 +1585,8 @@ class MetaMemTut extends React.Component {
                 style.stimDisHide
               )}
             </center>
-            <DrawFix />
+            <br />
+            <br />
           </div>
         );
       } else if (
@@ -1604,6 +1606,13 @@ class MetaMemTut extends React.Component {
                 style.instructStimDis
               )}
             </center>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <center></center>
           </div>
         );
       } else if (
@@ -1619,11 +1628,11 @@ class MetaMemTut extends React.Component {
       ) {
         text = (
           <div className={style.boxStyle}>
+            <br />
+            <br />
+            <br />
+            <br />
             <center>Which animal was shown?</center>
-            <br />
-            <br />
-            <br />
-            <br />
             <br />
             <br />
             <br />
@@ -1635,6 +1644,13 @@ class MetaMemTut extends React.Component {
             <span className={style.choiceWord}>
               {this.state.choiceShownWordRight}
             </span>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <center></center>
           </div>
         );
       } else if (
@@ -1644,11 +1660,11 @@ class MetaMemTut extends React.Component {
       ) {
         text = (
           <div className={style.boxStyle}>
+            <br />
+            <br />
+            <br />
+            <br />
             <center>Which animal was shown?</center>
-            <br />
-            <br />
-            <br />
-            <br />
             <br />
             <br />
             <br />
@@ -1660,6 +1676,13 @@ class MetaMemTut extends React.Component {
             <span className={this.state.choiceFbRight}>
               {this.state.choiceShownWordRight}
             </span>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <center></center>
           </div>
         );
       } else if (
