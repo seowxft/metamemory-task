@@ -1030,7 +1030,7 @@ class MetaMemPreTut extends React.Component {
         this.state.taskSection === "fixation"
       ) {
         text = (
-          <div className={style.boxStyle}>
+          <div className={style.boxStyle2}>
             <br />
             <br />
 
@@ -1050,7 +1050,7 @@ class MetaMemPreTut extends React.Component {
         this.state.taskSection === "stimChoice"
       ) {
         text = (
-          <div className={style.boxStyle}>
+          <div className={style.boxStyle2}>
             <center>What animal is this?</center>
             <br />
             <br />
@@ -1085,7 +1085,7 @@ class MetaMemPreTut extends React.Component {
         this.state.taskSection === "choiceFeedback"
       ) {
         text = (
-          <div className={style.boxStyle}>
+          <div className={style.boxStyle2}>
             <center>What animal is this?</center>
             <br />
             <br />
@@ -1120,7 +1120,7 @@ class MetaMemPreTut extends React.Component {
         this.state.taskSection === "corFeedback"
       ) {
         text = (
-          <div className={style.boxStyle}>
+          <div className={style.boxStyle2}>
             <center>{this.state.choiceFbRewText}</center>
             <br />
             <br />
