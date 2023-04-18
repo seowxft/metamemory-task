@@ -33,8 +33,16 @@ class MetaMemTask extends React.Component {
     const startTime = this.props.state.startTime;
     const stimNum = this.props.state.stimNum;
 
-    const statePic = this.props.state.statePic;
-    const stateWord = this.props.state.stateWord;
+    var statePic = this.props.state.statePic;
+    var stateWord = this.props.state.stateWord;
+
+    statePic = statePic.filter(function (val) {
+      return val !== undefined;
+    });
+
+    stateWord = stateWord.filter(function (val) {
+      return val !== undefined;
+    });
 
     var trialNumTotal = 30; //150
     var blockNumTotal = 3;

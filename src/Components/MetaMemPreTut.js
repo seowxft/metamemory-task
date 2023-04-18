@@ -30,8 +30,16 @@ class MetaMemPreTut extends React.Component {
     const date = this.props.state.date;
     const startTime = this.props.state.startTime;
 
-    const statePic = this.props.state.statePic;
-    const stateWord = this.props.state.stateWord;
+    var statePic = this.props.state.statePic;
+    var stateWord = this.props.state.stateWord;
+
+    statePic = statePic.filter(function (val) {
+      return val !== undefined;
+    });
+
+    stateWord = stateWord.filter(function (val) {
+      return val !== undefined;
+    });
 
     var stateNum = stateWord.length; //26
 
@@ -471,8 +479,6 @@ class MetaMemPreTut extends React.Component {
           </center>
           <br />
           <br />
-          <br />
-          <br />
           As the animal in the picture is a {this.state.stateWord[3]}, you would
           select the <strong>left</strong> word in this case.
         </span>
@@ -545,6 +551,8 @@ class MetaMemPreTut extends React.Component {
           <br />
           <center>
             Press [<strong>SPACEBAR</strong>] to begin.
+            <br />
+            <br />[<strong>←</strong>]
           </center>
         </span>
       </div>

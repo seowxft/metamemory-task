@@ -35,8 +35,16 @@ class MetaMemTut extends React.Component {
     const date = this.props.state.date;
     const startTime = this.props.state.startTime;
 
-    const statePic = this.props.state.statePic;
-    const stateWord = this.props.state.stateWord;
+    var statePic = this.props.state.statePic;
+    var stateWord = this.props.state.stateWord;
+
+    statePic = statePic.filter(function (val) {
+      return val !== undefined;
+    });
+
+    stateWord = stateWord.filter(function (val) {
+      return val !== undefined;
+    });
 
     var trialNumTotal = 10; //26
 
