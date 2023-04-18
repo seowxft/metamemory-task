@@ -23,6 +23,8 @@ import gorilla from "./ani-stim/gorilla.jpg";
 import spider from "./ani-stim/spider.jpg";
 //import buffalo from "./ani-stim/waterbuffalo.jpg";
 
+import queryString from "query-string";
+
 ////////////////
 var stateWord = [
   "butterfly",
@@ -74,7 +76,13 @@ class StartPage extends React.Component {
     //  var userID = Math.floor(100000 + Math.random() * 900000);
     //var userID = 120000; //for testing
 
+    const queryParams = new URLSearchParams(window.location.search);
+    const prolific_id = queryParams.get("PROLIFIC_PID");
+
     const userID = this.props.state.userID;
+    if (userID === null) {
+      userID = prolific_id;
+    }
 
     // Set state
     this.state = {
@@ -121,7 +129,7 @@ class StartPage extends React.Component {
     });
 
     //On click consent, sent to tutorial page with the props
-    this.props.navigate("/MetaMemPreTut", {
+    this.props.navigate("/MetaMemPreTut?PROLIFIC_PID=" + this.state.userID, {
       state: {
         userID: this.state.userID,
         date: this.state.date,

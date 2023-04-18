@@ -36,7 +36,7 @@ class Home extends React.Component {
 
   redirectToTarget() {
     //On click consent, sent to tutorial page with the props
-    this.props.navigate("/StartPage", {
+    this.props.navigate("/StartPage?PROLIFIC_PID=" + this.state.userID, {
       state: {
         userID: this.state.userID,
       },
@@ -83,6 +83,10 @@ class Home extends React.Component {
           ready, click the [<strong>Start</strong>] button below. Fullscreen
           mode will be automatically enabled and you will be brought to the
           consent pages.
+          <br />
+          <br />
+          Please <strong>do not refresh the webpage</strong> at any point in the
+          study. You will not be able to return to the same page.
           <br />
           <br />
           Note: If you encounter a technical issue during the study, please take
