@@ -1589,8 +1589,6 @@ class MetaMemTut extends React.Component {
             <center>Memorise these animals:</center>
             <br />
             <br />
-            <br />
-            <br />
             <center>
               {this.renderImages(
                 this.state.stimNum,
