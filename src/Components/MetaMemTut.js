@@ -46,7 +46,7 @@ class MetaMemTut extends React.Component {
       return val !== undefined;
     });
 
-    var trialNumTotal = 10; //26
+    var trialNumTotal = 16; //26
 
     //the stim position
     var choicePos = Array(Math.round(trialNumTotal / 2))
@@ -223,6 +223,14 @@ class MetaMemTut extends React.Component {
     var curInstructNum = this.state.instructNum;
     var whichButton = keyPressed;
     if (whichButton === 3 && curInstructNum === 6) {
+      this.setState({
+        trialNum: 1,
+        correctMat: [], //put correct in vector, to cal perf %
+        responseMatrix: [true, true],
+        reversals: 0,
+        stairDir: ["up", "up"],
+        stimNum: 2,
+      });
       setTimeout(
         function () {
           this.tutorBegin();
@@ -492,27 +500,11 @@ class MetaMemTut extends React.Component {
   // To ask them for the valence rating of the noises
   // before we start the task
   instructText(instructNum) {
-    let quizFeedback1;
-    let quizFeedback2;
-
-    if (this.state.quizTry > 1) {
-      quizFeedback1 =
-        "You scored " +
-        this.state.quizCorTotal +
-        "/5 correctly. Please read the instructions carefully.";
-      quizFeedback2 =
-        "Your task is to choose the animal that was shown previously.";
-    } else {
-      quizFeedback1 = "Well done!";
-      quizFeedback2 =
-        "You saw that choosing the animal that was shown previously was the correct answer.";
-    }
-
     let text;
     let text2;
 
     //If fail quiz once, this brings me to instruct before confidence
-    if (this.state.quizTry > 1 && this.state.quizTry <= 3) {
+    if (this.state.quizTry === 2 && this.state.quizTry === 3) {
       text2 = (
         <span>
           You scored {this.state.quizCorTotal}/{this.state.quizNumTotal} on the
@@ -1105,7 +1097,7 @@ class MetaMemTut extends React.Component {
           instructNum: 11,
           taskSection: "instruct",
         });
-      } else if (quizCorTotal !== this.state.quizNumTotal && quizTry < 4) {
+      } else if (quizCorTotal !== this.state.quizNumTotal && quizTry <= 3) {
         //if they got wrong for at least three times
         console.log("fAIL QUIZ");
         quizTry = quizTry + 1;
@@ -1116,7 +1108,7 @@ class MetaMemTut extends React.Component {
           taskSection: "instruct",
           quizTry: quizTry,
         });
-      } else {
+      } else if (quizCorTotal !== this.state.quizNumTotal && quizTry > 3) {
         //if they got more than one wrong
         tutorialTry = tutorialTry + 1;
         //  console.log("FAIL QUIZ");
