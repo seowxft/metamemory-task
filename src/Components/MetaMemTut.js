@@ -504,7 +504,7 @@ class MetaMemTut extends React.Component {
     let text2;
 
     //If fail quiz once, this brings me to instruct before confidence
-    if (this.state.quizTry === 2 && this.state.quizTry === 3) {
+    if (this.state.quizTry === 2 || this.state.quizTry === 3) {
       text2 = (
         <span>
           You scored {this.state.quizCorTotal}/{this.state.quizNumTotal} on the
