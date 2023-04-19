@@ -1097,7 +1097,7 @@ class MetaMemTut extends React.Component {
           instructNum: 11,
           taskSection: "instruct",
         });
-      } else if (quizCorTotal !== this.state.quizNumTotal && quizTry <= 3) {
+      } else if (quizCorTotal !== this.state.quizNumTotal && quizTry <= 2) {
         //if they got wrong for at least three times
         console.log("fAIL QUIZ");
         quizTry = quizTry + 1;
@@ -1108,7 +1108,7 @@ class MetaMemTut extends React.Component {
           taskSection: "instruct",
           quizTry: quizTry,
         });
-      } else if (quizCorTotal !== this.state.quizNumTotal && quizTry > 3) {
+      } else if (quizCorTotal !== this.state.quizNumTotal && quizTry > 2) {
         //if they got more than one wrong
         tutorialTry = tutorialTry + 1;
         //  console.log("FAIL QUIZ");
