@@ -68,7 +68,7 @@ class MetaMemTut extends React.Component {
       //section paramters
       sectionTime: sectionTime,
       section: "tutorial",
-
+      tutorialTry: 1,
       // trial timings in ms
       fixTimeLag: 1000, //1000
       stimTimeLag: 1500, //1500
@@ -508,9 +508,49 @@ class MetaMemTut extends React.Component {
         "You saw that choosing the animal that was shown previously was the correct answer.";
     }
 
+    let text;
+    let text2;
+
+    //If fail quiz once, this brings me to instruct before confidence
+    if (this.state.quizTry > 1 && this.state.quizTry <= 3) {
+      text2 = (
+        <span>
+          You scored {this.state.quizCorTotal}/{this.state.quizNumTotal} on the
+          quiz. Please read the instructions carefully.
+          <br />
+          <br />
+          Your task is to choose the word that{" "}
+          <strong>matches one of the animals you saw previously</strong>.
+        </span>
+      );
+    }
+    //If fail quiz more than once, this brings me to the beginning of the instruct
+    else if (this.state.quizTry >= 4) {
+      text = (
+        <span>
+          You scored {this.state.quizCorTotal}/{this.state.quizNumTotal} on the
+          quiz. We will restart the tutorial. Please read the instructions
+          carefully.
+          <br />
+          <br />
+        </span>
+      );
+
+      text2 = (
+        <span>
+          Well done!
+          <br />
+          <br />
+          You saw that choosing the word that matches one of the animals you saw
+          previously was the correct answer.
+        </span>
+      );
+    }
+
     let instruct_text1 = (
       <div>
         <span>
+          {text}
           As mentioned earlier, the animals we brought on board have scattered
           to various parts of the spaceship. As we encounter them, we need your
           assistance in catelouging one of the ones you have seen.
@@ -715,10 +755,7 @@ class MetaMemTut extends React.Component {
     let instruct_text7 = (
       <div>
         <span>
-          {quizFeedback1}
-          <br />
-          <br />
-          {quizFeedback2}
+          {text2}
           <br />
           <br />
           During the main task, you will also have to indicate your{" "}
@@ -835,6 +872,10 @@ class MetaMemTut extends React.Component {
         Note: You will have to get <strong>all</strong> quiz questions correct.
         If not, you be sent back to the instructions and will have to retake the
         quiz!
+        <br />
+        <br />
+        If you fail too many times, you will be brought to the beginning of the
+        entire tutorial.
         <br />
         <br />
         <center>
@@ -1053,7 +1094,8 @@ class MetaMemTut extends React.Component {
     } else if (quizNum === this.state.quizNumTotal) {
       document.removeEventListener("keyup", this._handleQuizKey);
       //end quiz, head back to instructions
-
+      var quizTry = this.state.quizTry;
+      var tutorialTry = this.state.tutorialTry;
       //if full marks
       if (quizCorTotal === this.state.quizNumTotal) {
         console.log("PASS QUIZ");
@@ -1063,16 +1105,29 @@ class MetaMemTut extends React.Component {
           instructNum: 11,
           taskSection: "instruct",
         });
-      } else {
-        //if they got one wrong
+      } else if (quizCorTotal !== this.state.quizNumTotal && quizTry < 4) {
+        //if they got wrong for at least three times
         console.log("fAIL QUIZ");
-        var quizTry = this.state.quizTry + 1;
+        quizTry = quizTry + 1;
         this.setState({
           instructScreen: true,
           taskScreen: false,
           instructNum: 7,
           taskSection: "instruct",
           quizTry: quizTry,
+        });
+      } else {
+        //if they got more than one wrong
+        tutorialTry = tutorialTry + 1;
+        //  console.log("FAIL QUIZ");
+        quizTry = quizTry + 1;
+        this.setState({
+          instructScreen: true,
+          taskScreen: false,
+          instructNum: 1,
+          taskSection: "instruct",
+          quizTry: quizTry,
+          tutorialTry: tutorialTry,
         });
       }
     }
@@ -1409,7 +1464,7 @@ class MetaMemTut extends React.Component {
       section: this.state.section,
       sectionTime: this.state.sectionTime,
       trialNum: this.state.trialNum,
-
+      tutorialTry: this.state.tutorialTry,
       choicePos: this.state.choicePos,
       choiceCor: this.state.choiceCor,
       trialTime: this.state.trialTime,
