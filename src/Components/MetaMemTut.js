@@ -71,7 +71,7 @@ class MetaMemTut extends React.Component {
       tutorialTry: 1,
       // trial timings in ms
       fixTimeLag: 1000, //1000
-      stimTimeLag: 1500, //1500
+      stimTimeLag: 1000, //1500
       encodeTimeLag: 1000,
       respFbTimeLag: 700, //
       fbTimeLag: 500, //500 correct or wrong
@@ -110,7 +110,7 @@ class MetaMemTut extends React.Component {
       responseMatrix: [true, true],
       reversals: 0,
       stairDir: ["up", "up"],
-      stimNum: 2,
+      stimNum: 6,
 
       //quiz paramters
       quizTry: 1,

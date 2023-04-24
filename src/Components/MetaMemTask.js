@@ -66,7 +66,7 @@ class MetaMemTask extends React.Component {
 
       // trial timings in ms
       fixTimeLag: 1000, //1000
-      stimTimeLag: 1500, //1500
+      stimTimeLag: 1000, //1500
       encodeTimeLag: 1000,
       respFbTimeLag: 700,
 
