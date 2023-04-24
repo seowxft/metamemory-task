@@ -229,7 +229,7 @@ class MetaMemTut extends React.Component {
         responseMatrix: [true, true],
         reversals: 0,
         stairDir: ["up", "up"],
-        stimNum: 2,
+        stimNum: 6,
       });
       setTimeout(
         function () {
