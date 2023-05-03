@@ -45,8 +45,8 @@ export function staircase(stimNum, prevTrialPerf, dir, trialNum) {
   // Set limits on stimNum, minimum 2 pictures
   if (stimNum <= 2) stimNum = 2;
 
-  // Set limits on stimNum, maximum 12 pictures? (i will need 13 stim, always have to minus one for the 2AFC)
-  if (stimNum >= 12) stimNum = 12;
+  // Set limits on stimNum, maximum 14 pictures? (i will need 15 stim, always have to minus one for the 2AFC)
+  if (stimNum >= 14) stimNum = 14;
 
   var output = {
     stimNum: stimNum,

@@ -13,7 +13,7 @@ import snail from "./ani-stim/snail.jpg";
 import frog from "./ani-stim/frog.jpg";
 import beetle from "./ani-stim/beetle.jpg";
 import ant from "./ani-stim/ant.jpg";
-//import camel from "./ani-stim/camel.jpg";
+import camel from "./ani-stim/camel.jpg";
 import owl from "./ani-stim/owl.jpg";
 import tiger from "./ani-stim/tiger.jpg";
 import panther from "./ani-stim/panther.jpg";
@@ -21,7 +21,7 @@ import bear from "./ani-stim/bear.jpg";
 import snake from "./ani-stim/snake.jpg";
 import gorilla from "./ani-stim/gorilla.jpg";
 import spider from "./ani-stim/spider.jpg";
-//import buffalo from "./ani-stim/waterbuffalo.jpg";
+import buffalo from "./ani-stim/waterbuffalo.jpg";
 
 ////////////////
 var stateWord = [
@@ -38,6 +38,8 @@ var stateWord = [
   "snake",
   "gorilla",
   "spider",
+  "camel",
+  "buffalo",
 ];
 
 var statePic = [
@@ -54,6 +56,8 @@ var statePic = [
   snake,
   gorilla,
   spider,
+  camel,
+  buffalo,
 ];
 
 class StartPage extends React.Component {
