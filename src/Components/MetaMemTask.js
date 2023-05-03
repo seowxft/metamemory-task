@@ -105,7 +105,7 @@ class MetaMemTask extends React.Component {
       responseMatrix: [true, true],
       reversals: 0,
       stairDir: ["up", "up"],
-      stimNum: stimNum,
+      stimNum: stimNum - 1,
 
       //quiz
       quizState: "pre",
