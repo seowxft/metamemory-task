@@ -110,7 +110,7 @@ class MetaMemTut extends React.Component {
       responseMatrix: [true, true],
       reversals: 0,
       stairDir: ["up", "up"],
-      stimNum: 7 - 1,
+      stimNum: 6,
 
       //quiz paramters
       quizTry: 1,
