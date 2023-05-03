@@ -21,7 +21,7 @@ import bear from "./ani-stim/bear.jpg";
 import snake from "./ani-stim/snake.jpg";
 import gorilla from "./ani-stim/gorilla.jpg";
 import spider from "./ani-stim/spider.jpg";
-import buffalo from "./ani-stim/waterbuffalo.jpg";
+import buffalo from "./ani-stim/buffalo.jpg";
 
 ////////////////
 var stateWord = [
