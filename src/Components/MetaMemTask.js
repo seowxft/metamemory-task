@@ -1078,11 +1078,13 @@ class MetaMemTask extends React.Component {
   renderQuizSave() {
     document.removeEventListener("keyup", this._handleGlobalConfKey);
     var prolificID = this.state.prolificID;
+    var task = "memory";
 
     let saveString = {
       prolificID: this.state.prolificID,
       condition: this.state.condition,
       userID: this.state.userID,
+      task:task,
       date: this.state.date,
       startTime: this.state.startTime,
       section: this.state.section,
