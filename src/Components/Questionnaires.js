@@ -30,6 +30,8 @@ class Questionnaires extends React.Component {
     super(props);
 
     const userID = this.props.state.userID;
+    const prolificID = this.props.state.prolificID;
+    const condition = this.props.state.condition;
     const date = this.props.state.date;
     const startTime = this.props.state.startTime;
 
@@ -72,6 +74,9 @@ class Questionnaires extends React.Component {
     //  console.log(allIQText);
 
     this.state = {
+
+      prolificID: prolificID,
+      condition: condition,
       userID: userID,
       date: date,
       startTime: startTime,
@@ -120,7 +125,9 @@ class Questionnaires extends React.Component {
     survey.setValue(quizRT, qnRT);
 
     var qnEnd = Math.round(performance.now());
-    var userID = this.state.userID;
+    var prolificID = this.state.prolificID;
+    survey.setValue("userID", prolificID);
+    survey.setValue("condition", this.state.condition);
     survey.setValue("userID", userID);
     survey.setValue("date", this.state.date);
     survey.setValue("startTime", this.state.startTime);
@@ -133,7 +140,7 @@ class Questionnaires extends React.Component {
 
     //  console.log("resultAsString", resultAsString);
 
-    fetch(`${DATABASE_URL}/psych_quiz/` + userID, {
+    fetch(`${DATABASE_URL}/psych_quiz/` + prolificID, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -194,8 +201,10 @@ class Questionnaires extends React.Component {
   redirectToNextTask() {
     document.removeEventListener("keyup", this._handleInstructKey);
     document.removeEventListener("keyup", this._handleDebugKey);
-    this.props.navigate("/End?PROLIFIC_PID=" + this.state.userID, {
+    this.props.navigate("/End?PROLIFIC_PID=" + this.state.prolificID, {
       state: {
+        prolificID: this.state.prolificID,
+        condition: this.state.condition,
         userID: this.state.userID,
         date: this.state.date,
         startTime: this.state.startTime,

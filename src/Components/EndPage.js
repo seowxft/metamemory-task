@@ -17,6 +17,9 @@ class EndPage extends React.Component {
     //  const startTime = 100;
 
     const userID = this.props.state.userID;
+    const prolificID = this.props.state.prolificID;
+    const condition = this.props.state.condition;
+    const userID = this.props.state.userID;
     const date = this.props.state.date;
     const startTime = this.props.state.startTime;
 
@@ -25,6 +28,8 @@ class EndPage extends React.Component {
     // SET STATES
     this.state = {
       // demo paramters
+      prolific: prolificID,
+      condition: condition,
       userID: userID,
       date: date,
       startTime: startTime,

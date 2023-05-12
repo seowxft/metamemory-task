@@ -78,11 +78,19 @@ class StartPage extends React.Component {
     //  var userID = Math.floor(100000 + Math.random() * 900000);
     //var userID = 120000; //for testing
 
-    const userID = this.props.state.userID;
+   // const userID = this.props.state.userID;
+
+    var userID = Math.floor(100000 + Math.random() * 900000);
+    var condition = 0;
+
+    const prolificID = this.props.state.prolificID;
+
 
     // Set state
     this.state = {
       userID: userID,
+      prolificID: prolificID,
+      condition: condition,
       date: dateString,
       dateTime: dateTime,
       startTime: timeString,
@@ -125,13 +133,18 @@ class StartPage extends React.Component {
     });
 
     //On click consent, sent to tutorial page with the props
-    this.props.navigate("/MetaMemPreTut?PROLIFIC_PID=" + this.state.userID, {
+    this.props.navigate("/MetaMemPreTut?PROLIFIC_PID=" + this.state.prolificID, {
       state: {
+        prolificID: this.state.prolificID,
+        userID: this.state.userID,
+        condition: condition,
         userID: this.state.userID,
         date: this.state.date,
         startTime: this.state.startTime,
         statePic: this.state.statePic,
         stateWord: this.state.stateWord,
+        memCorrectPer: 0,
+        perCorrectPer: 0,
       },
     });
 

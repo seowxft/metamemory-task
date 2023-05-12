@@ -30,10 +30,16 @@ class MetaMemTut extends React.Component {
     //  const userID = 100;
     //  const date = 100;
     //  const startTime = 100;
-
+    const prolificID = this.props.state.prolificID;
+    const condition = this.props.state.condition;
     const userID = this.props.state.userID;
     const date = this.props.state.date;
     const startTime = this.props.state.startTime;
+
+    
+
+    const memCorrectPer = this.props.state.memCorrectPer;
+    const perCorrectPer = this.props.state.perCorrectPer; //if perception task is done, it will be filled, else zero
 
     var statePic = this.props.state.statePic;
     var stateWord = this.props.state.stateWord;
@@ -60,6 +66,8 @@ class MetaMemTut extends React.Component {
     // SET STATES
     this.state = {
       // demo paramters
+      prolificID: prolificID,
+      condition: condition,
       userID: userID,
       date: date,
       startTime: startTime,
@@ -127,6 +135,10 @@ class MetaMemTut extends React.Component {
       taskScreen: false,
       taskSection: null,
       debug: false,
+
+      
+      memCorrectPer: memCorrectPer,
+      perCorrectPer:perCorrectPer,
     };
 
     //////////////////////////////////////////////////////////////////////////////////////////////
@@ -1443,13 +1455,15 @@ class MetaMemTut extends React.Component {
   }
 
   renderTutorSave() {
-    var userID = this.state.userID;
+    var prolificID = this.state.prolificID;
 
     //  var stimPickShown = this.state.stimPickShown.substring(0, 50);
     var stimShown = null;
     var stimPick = null;
 
     let saveString = {
+      prolificID: this.state.prolificID,
+      condition:this.state.condition,
       userID: this.state.userID,
       date: this.state.date,
       startTime: this.state.startTime,
@@ -1490,7 +1504,7 @@ class MetaMemTut extends React.Component {
     };
 
     try {
-      fetch(`${DATABASE_URL}/mem_tutorial_data/` + userID, {
+      fetch(`${DATABASE_URL}/mem_tutorial_data/` + prolificID, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -1511,9 +1525,11 @@ class MetaMemTut extends React.Component {
   }
 
   renderQuizSave() {
-    var userID = this.state.userID;
+    var prolificID = this.state.prolificID;
 
     let saveString = {
+      prolificID: this.state.prolificID,
+      condition: this.state.condition,
       userID: this.state.userID,
       date: this.state.date,
       startTime: this.state.startTime,
@@ -1533,7 +1549,7 @@ class MetaMemTut extends React.Component {
     };
 
     try {
-      fetch(`${DATABASE_URL}/mem_quiz_test/` + userID, {
+      fetch(`${DATABASE_URL}/mem_quiz_test/` + prolificID, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -1556,14 +1572,18 @@ class MetaMemTut extends React.Component {
   redirectToNextTask() {
     document.removeEventListener("keyup", this._handleInstructKey);
     document.removeEventListener("keyup", this._handleBeginKey);
-    this.props.navigate("/MetaMemTask?PROLIFIC_PID=" + this.state.userID, {
+    this.props.navigate("/MetaMemTask?PROLIFIC_PID=" + this.state.prolificID, {
       state: {
+        prolificID: this.state.prolificID,
+        condition: this.state.condition,
         userID: this.state.userID,
         date: this.state.date,
         startTime: this.state.startTime,
         statePic: this.state.statePic,
         stateWord: this.state.stateWord,
         stimNum: this.state.stimNum,
+        memCorrectPer: this.state.memCorrectPer,
+        perCorrectPer:this.state.perCorrectPer
       },
     });
 

@@ -26,9 +26,15 @@ class MetaMemPreTut extends React.Component {
     //  const date = 100;
     //  const startTime = 100;
 
+    const prolificID = this.props.state.prolificID;
+    const condition = this.props.state.condition;
     const userID = this.props.state.userID;
     const date = this.props.state.date;
     const startTime = this.props.state.startTime;
+
+
+    const memCorrectPer = this.props.state.memCorrectPer;
+    const perCorrectPer = this.props.state.perCorrectPer; //if perception task is done, it will be filled, else zero
 
     var statePic = this.props.state.statePic;
     var stateWord = this.props.state.stateWord;
@@ -56,6 +62,8 @@ class MetaMemPreTut extends React.Component {
     // SET STATES
     this.state = {
       // demo paramters
+      prolificID: prolificID,
+      condition: condition,
       userID: userID,
       date: date,
       startTime: startTime,
@@ -108,6 +116,9 @@ class MetaMemPreTut extends React.Component {
       taskScreen: false,
       taskSection: null,
       debug: false,
+      
+      memCorrectPer: memCorrectPer,
+      perCorrectPer: perCorrectPer,
     };
 
     //////////////////////////////////////////////////////////////////////////////////////////////
@@ -910,7 +921,7 @@ class MetaMemPreTut extends React.Component {
   }
 
   renderPreTutorSave() {
-    var userID = this.state.userID;
+    var prolificID = this.state.prolificID;
 
     //  var stimPickShown = this.state.stimPickShown.substring(0, 50);
     //  var statePicArray = this.state.statePicArray.substring(0, 50);
@@ -920,6 +931,8 @@ class MetaMemPreTut extends React.Component {
     var statePicArray = null;
 
     let saveString = {
+      prolificID: this.state.prolificID,
+      condition: this.state.condition,
       userID: this.state.userID,
       date: this.state.date,
       startTime: this.state.startTime,
@@ -976,13 +989,17 @@ class MetaMemPreTut extends React.Component {
   redirectToNextTask() {
     document.removeEventListener("keyup", this._handleInstructKey);
     document.removeEventListener("keyup", this._handleBeginKey);
-    this.props.navigate("/MetaMemTut?PROLIFIC_PID=" + this.state.userID, {
+    this.props.navigate("/MetaMemTut?PROLIFIC_PID=" + this.state.prolificID, {
       state: {
+        prolificID: this.state.prolificID,
+        condition: this.state.condition,
         userID: this.state.userID,
         date: this.state.date,
         startTime: this.state.startTime,
         statePic: this.state.statePic,
         stateWord: this.state.stateWord,
+        perCorrectPer: this.state.perCorrectPer,
+        memCorrectPer: this.state.memCorrectPer,
       },
     });
 
