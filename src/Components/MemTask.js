@@ -48,7 +48,7 @@ class MemTask extends React.Component {
       return val !== undefined;
     });
 
-    var trialNumTotal = 9; //150
+    var trialNumTotal = 150; //150
     var blockNumTotal = 3;
     var trialNumPerBlock = Math.round(trialNumTotal / blockNumTotal);
 
@@ -63,7 +63,7 @@ class MemTask extends React.Component {
     // SET STATES
     this.state = {
       prolificID: prolificID,
-      condition:condition,
+      condition: condition,
       userID: userID,
       date: date,
       startTime: startTime,
