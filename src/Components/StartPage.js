@@ -4,61 +4,7 @@ import "../../node_modules/survey-react/survey.css";
 import "./style/surveyStyle.css";
 import withRouter from "./withRouter";
 
-//import { json } from "./consent/consent.js"; //short for debugging
 import { json } from "./consent/consentFull.js";
-
-import butterfly from "./ani-stim/butterfly.jpg";
-import ladybug from "./ani-stim/ladybug.jpg";
-import snail from "./ani-stim/snail.jpg";
-import frog from "./ani-stim/frog.jpg";
-import beetle from "./ani-stim/beetle.jpg";
-import ant from "./ani-stim/ant.jpg";
-import camel from "./ani-stim/camel.jpg";
-import owl from "./ani-stim/owl.jpg";
-import tiger from "./ani-stim/tiger.jpg";
-import panther from "./ani-stim/panther.jpg";
-import bear from "./ani-stim/bear.jpg";
-import snake from "./ani-stim/snake.jpg";
-import gorilla from "./ani-stim/gorilla.jpg";
-import spider from "./ani-stim/spider.jpg";
-import buffalo from "./ani-stim/buffalo.jpg";
-
-////////////////
-var stateWord = [
-  "butterfly",
-  "ladybug",
-  "snail",
-  "frog",
-  "beetle",
-  "ant",
-  "owl",
-  "tiger",
-  "panther",
-  "bear",
-  "snake",
-  "gorilla",
-  "spider",
-  "camel",
-  "buffalo",
-];
-
-var statePic = [
-  butterfly,
-  ladybug,
-  snail,
-  frog,
-  beetle,
-  ant,
-  owl,
-  tiger,
-  panther,
-  bear,
-  snake,
-  gorilla,
-  spider,
-  camel,
-  buffalo,
-];
 
 class StartPage extends React.Component {
   constructor(props) {
@@ -74,14 +20,18 @@ class StartPage extends React.Component {
     var dateString = date + "-" + (month + 1) + "-" + year;
     var timeString = currentDate.toTimeString();
 
-    // ID number - either set or get from url
-    //  var userID = Math.floor(100000 + Math.random() * 900000);
-    //var userID = 120000; //for testing
-
-    // const userID = this.props.state.userID;
-
+    // Random ID number to set conditions for the task order
+    // even numbers will start with the perception task
+    // odd numbers will start with the memory task
     var userID = Math.floor(100000 + Math.random() * 900000);
-    var condition = 1; //participants will only do this version if they have error in the second task (which is the memory)
+    var condition;
+    if (userID % 2 == 0) {
+      condition = 1;
+      console.log("Start with perception task.");
+    } else {
+      condition = 2;
+      console.log("Start with memory task.");
+    }
 
     const prolificID = this.props.state.prolificID;
 
@@ -93,10 +43,6 @@ class StartPage extends React.Component {
       date: dateString,
       dateTime: dateTime,
       startTime: timeString,
-
-      statePic: statePic,
-      stateWord: stateWord,
-
       consentComplete: 0,
     };
 
@@ -107,14 +53,7 @@ class StartPage extends React.Component {
     window.scrollTo(0, 0);
     document.body.style.overflow = "auto";
 
-    var statePic = this.state.statePic;
-
-    [statePic].forEach((image) => {
-      new Image().src = image;
-    });
-
     this.setState({
-      statePic: statePic,
       mounted: 1,
     });
   }
@@ -131,26 +70,30 @@ class StartPage extends React.Component {
       consentComplete: 1,
     });
 
-    //On click consent, sent to tutorial page with the props
-    this.props.navigate(
-      "/MetaMemPreTut?PROLIFIC_PID=" + this.state.prolificID,
-      {
-        state: {
-          prolificID: this.state.prolificID,
-          userID: this.state.userID,
-          condition: condition,
-          userID: this.state.userID,
-          date: this.state.date,
-          startTime: this.state.startTime,
-          statePic: this.state.statePic,
-          stateWord: this.state.stateWord,
-          memCorrectPer: 0,
-          perCorrectPer: 0,
-        },
-      }
-    );
+    var condition = this.state.condition;
+    var condUrl;
 
-    console.log("UserID is: " + this.state.userID);
+    if (condition === 1) {
+      //On click consent, sent to perception task
+      condUrl = "/PerTut?PROLIFIC_PID=";
+    } else {
+      //On click consent, sent to memory task
+      condUrl = "/MemPreTut?PROLIFIC_PID=";
+    }
+
+    this.props.navigate(condUrl + this.state.prolificID, {
+      state: {
+        prolificID: this.state.prolificID,
+        userID: this.state.userID,
+        condition: condition,
+        date: this.state.date,
+        startTime: this.state.startTime,
+        statePic: this.state.statePic,
+        stateWord: this.state.stateWord,
+        memCorrectPer: 0,
+        perCorrectPer: 0,
+      },
+    });
   }
 
   render() {

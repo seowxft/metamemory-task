@@ -484,16 +484,17 @@ class MemPreTut extends React.Component {
           here to help.
         </span>
       );
-    
     }
 
     let instruct_text1 = (
       <div>
         <span>
           {taskCond}
+          <br />
+          <br />
           We have some animals on board, and in the collision, they have
           scattered to various parts of the spaceship. We need your assistance
-          in recollocating them back to their pods.
+          in reallocating them back to their pods.
           <br /> <br />
           <center>
             Use the ← and → keys to navigate the pages.
