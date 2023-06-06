@@ -1,8 +1,8 @@
 import React from "react";
 import DrawFix from "./DrawFix";
-import style from "./style/taskStyle.module.css";
+import style from "./style/memTaskStyle.module.css";
 import * as ConfSliderEx from "./DrawConfSliderExample.js";
-import * as staircase from "./staircase.js";
+import * as staircase from "./MemStaircase.js";
 import * as utils from "./utils.js";
 import withRouter from "./withRouter.js";
 import astrodude from "./img/astronaut.png";
@@ -18,7 +18,7 @@ import { DATABASE_URL } from "./config";
 // 3) Instructions to confidence rating
 // 4) Quiz on instructions
 
-class MetaMemTut extends React.Component {
+class MemTut extends React.Component {
   //////////////////////////////////////////////////////////////////////////////////////////////
   // CONSTRUCTOR
   constructor(props) {
@@ -30,13 +30,12 @@ class MetaMemTut extends React.Component {
     //  const userID = 100;
     //  const date = 100;
     //  const startTime = 100;
+
     const prolificID = this.props.state.prolificID;
     const condition = this.props.state.condition;
     const userID = this.props.state.userID;
     const date = this.props.state.date;
     const startTime = this.props.state.startTime;
-
-    
 
     const memCorrectPer = this.props.state.memCorrectPer;
     const perCorrectPer = this.props.state.perCorrectPer; //if perception task is done, it will be filled, else zero
@@ -136,7 +135,6 @@ class MetaMemTut extends React.Component {
       taskSection: null,
       debug: false,
 
-      
       memCorrectPer: memCorrectPer,
       perCorrectPer:perCorrectPer,
     };
@@ -1572,7 +1570,7 @@ class MetaMemTut extends React.Component {
   redirectToNextTask() {
     document.removeEventListener("keyup", this._handleInstructKey);
     document.removeEventListener("keyup", this._handleBeginKey);
-    this.props.navigate("/MetaMemTask?PROLIFIC_PID=" + this.state.prolificID, {
+    this.props.navigate("/MemTask?PROLIFIC_PID=" + this.state.prolificID, {
       state: {
         prolificID: this.state.prolificID,
         condition: this.state.condition,
@@ -1823,4 +1821,4 @@ class MetaMemTut extends React.Component {
   }
 }
 
-export default withRouter(MetaMemTut);
+export default withRouter(MemTut);

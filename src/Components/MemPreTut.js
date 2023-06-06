@@ -1,10 +1,26 @@
 import React from "react";
 import DrawFix from "./DrawFix";
-import style from "./style/taskStyle.module.css";
+import style from "./style/memTaskStyle.module.css";
 import * as utils from "./utils.js";
 import withRouter from "./withRouter.js";
 import astrodude from "./img/astronaut.png";
 import { DATABASE_URL } from "./config";
+
+import butterfly from "./ani-stim/butterfly.jpg";
+import ladybug from "./ani-stim/ladybug.jpg";
+import snail from "./ani-stim/snail.jpg";
+import frog from "./ani-stim/frog.jpg";
+import beetle from "./ani-stim/beetle.jpg";
+import ant from "./ani-stim/ant.jpg";
+import camel from "./ani-stim/camel.jpg";
+import owl from "./ani-stim/owl.jpg";
+import tiger from "./ani-stim/tiger.jpg";
+import panther from "./ani-stim/panther.jpg";
+import bear from "./ani-stim/bear.jpg";
+import snake from "./ani-stim/snake.jpg";
+import gorilla from "./ani-stim/gorilla.jpg";
+import spider from "./ani-stim/spider.jpg";
+import buffalo from "./ani-stim/buffalo.jpg";
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -13,7 +29,7 @@ import { DATABASE_URL } from "./config";
 // 1) Introduction to cover story
 // 2) NEW!! Task to name the pictures correctly
 
-class MetaMemPreTut extends React.Component {
+class MemPreTut extends React.Component {
   //////////////////////////////////////////////////////////////////////////////////////////////
   // CONSTRUCTOR
   constructor(props) {
@@ -32,12 +48,45 @@ class MetaMemPreTut extends React.Component {
     const date = this.props.state.date;
     const startTime = this.props.state.startTime;
 
-
     const memCorrectPer = this.props.state.memCorrectPer;
     const perCorrectPer = this.props.state.perCorrectPer; //if perception task is done, it will be filled, else zero
 
-    var statePic = this.props.state.statePic;
-    var stateWord = this.props.state.stateWord;
+    ////////////////
+    var stateWord = [
+      "butterfly",
+      "ladybug",
+      "snail",
+      "frog",
+      "beetle",
+      "ant",
+      "owl",
+      "tiger",
+      "panther",
+      "bear",
+      "snake",
+      "gorilla",
+      "spider",
+      "camel",
+      "buffalo",
+    ];
+
+    var statePic = [
+      butterfly,
+      ladybug,
+      snail,
+      frog,
+      beetle,
+      ant,
+      owl,
+      tiger,
+      panther,
+      bear,
+      snake,
+      gorilla,
+      spider,
+      camel,
+      buffalo,
+    ];
 
     statePic = statePic.filter(function (val) {
       return val !== undefined;
@@ -116,7 +165,7 @@ class MetaMemPreTut extends React.Component {
       taskScreen: false,
       taskSection: null,
       debug: false,
-      
+
       memCorrectPer: memCorrectPer,
       perCorrectPer: perCorrectPer,
     };
@@ -416,14 +465,32 @@ class MetaMemPreTut extends React.Component {
   // To ask them for the valence rating of the noises
   // before we start the task
   instructText(instructNum) {
+    var taskCond;
+
+    if (this.state.condition === 1) {
+      //perception task started first
+      taskCond = (
+        <span>
+          After we powered up the spaceship, we unforunately found that some
+          things have been displaced!
+        </span>
+      );
+    } else {
+      taskCond = (
+        <span>
+          Welcome to spaceship!
+          <br /> <br />
+          The ship has been damaged with an asteriod hit and we are glad you are
+          here to help.
+        </span>
+      );
+    
+    }
+
     let instruct_text1 = (
       <div>
         <span>
-          Welcome to spaceship, engineer!
-          <br /> <br />
-          The ship has been damaged with an asteriod hit, and we are glad you
-          are here to help.
-          <br /> <br />
+          {taskCond}
           We have some animals on board, and in the collision, they have
           scattered to various parts of the spaceship. We need your assistance
           in recollocating them back to their pods.
@@ -966,7 +1033,7 @@ class MetaMemPreTut extends React.Component {
     console.log(saveString);
 
     try {
-      fetch(`${DATABASE_URL}/mem_pre_tutorial_data/` + userID, {
+      fetch(`${DATABASE_URL}/mem_pre_tutorial_data/` + prolificID, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -989,7 +1056,7 @@ class MetaMemPreTut extends React.Component {
   redirectToNextTask() {
     document.removeEventListener("keyup", this._handleInstructKey);
     document.removeEventListener("keyup", this._handleBeginKey);
-    this.props.navigate("/MetaMemTut?PROLIFIC_PID=" + this.state.prolificID, {
+    this.props.navigate("/MemTut?PROLIFIC_PID=" + this.state.prolificID, {
       state: {
         prolificID: this.state.prolificID,
         condition: this.state.condition,
@@ -1009,6 +1076,16 @@ class MetaMemPreTut extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
+    var statePic = this.state.statePic;
+
+    [statePic].forEach((image) => {
+      new Image().src = image;
+    });
+
+    this.setState({
+      statePic: statePic,
+      mounted: 1,
+    });
   }
 
   renderImages(number, imageArray) {
@@ -1192,4 +1269,4 @@ class MetaMemPreTut extends React.Component {
   }
 }
 
-export default withRouter(MetaMemPreTut);
+export default withRouter(MemPreTut);

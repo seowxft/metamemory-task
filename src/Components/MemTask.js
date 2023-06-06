@@ -1,8 +1,8 @@
 import React from "react";
 import DrawFix from "./DrawFix";
-import style from "./style/taskStyle.module.css";
+import style from "./style/memTaskStyle.module.css";
 import * as utils from "./utils.js";
-import * as staircase from "./staircase.js";
+import * as staircase from "./MemStaircase.js";
 import withRouter from "./withRouter.js";
 import * as ConfSlider from "./DrawConfSlider.js";
 import * as ConfSliderGlobal from "./DrawConfSliderGlobal.js";
@@ -15,7 +15,7 @@ import { DATABASE_URL } from "./config";
 // 1) Pre task confidence ratings
 // 2) Task with trial by trial conf ratings
 
-class MetaMemTask extends React.Component {
+class MemTask extends React.Component {
   //////////////////////////////////////////////////////////////////////////////////////////////
   // CONSTRUCTOR
   constructor(props) {
@@ -29,13 +29,11 @@ class MetaMemTask extends React.Component {
     //  const startTime = 100;
     //
     const userID = this.props.state.userID;
-    
     const prolificID = this.props.state.prolificID;
     const condition = this.props.state.condition;
     const date = this.props.state.date;
     const startTime = this.props.state.startTime;
     const stimNum = this.props.state.stimNum;
-    
     const memCorrectPer = this.props.state.memCorrectPer;
     const perCorrectPer = this.props.state.perCorrectPer;
 
@@ -50,7 +48,7 @@ class MetaMemTask extends React.Component {
       return val !== undefined;
     });
 
-    var trialNumTotal = 150; //150
+    var trialNumTotal = 9; //150
     var blockNumTotal = 3;
     var trialNumPerBlock = Math.round(trialNumTotal / blockNumTotal);
 
@@ -125,7 +123,7 @@ class MetaMemTask extends React.Component {
       taskScreen: false,
       taskSection: null,
       debug: false,
-      
+
       memCorrectPer: memCorrectPer,
       perCorrectPer: perCorrectPer,
     };
@@ -1083,8 +1081,8 @@ class MetaMemTask extends React.Component {
     let saveString = {
       prolificID: this.state.prolificID,
       condition: this.state.condition,
+      task: task,
       userID: this.state.userID,
-      task:task,
       date: this.state.date,
       startTime: this.state.startTime,
       section: this.state.section,
@@ -1141,16 +1139,27 @@ class MetaMemTask extends React.Component {
     document.removeEventListener("keyup", this._handleInstructKey);
     document.removeEventListener("keyup", this._handleBeginKey);
 
+    var condition = this.state.condition;
+    var perCorrectPer = this.state.perCorrectPer;
     var memCorrectPer = this.state.correctPer;
 
-    this.props.navigate("/Bonus?PROLIFIC_PID=" + this.state.prolificID, {
+    var condUrl;
+    if (condition === 1) {
+      //Sent to insight to finish
+      condUrl = "/Bonus?PROLIFIC_PID=";
+    } else {
+      //Sent to perception task for part 2
+      condUrl = "/PerTut?PROLIFIC_PID=";
+    }
+
+    this.props.navigate(condUrl + this.state.prolificID, {
       state: {
         prolificID: this.state.prolificID,
         userID: this.state.userID,
         condition: this.state.condition,
         date: this.state.date,
         startTime: this.state.startTime,
-        perCorrectPer: this.state.perCorrectPer,
+        perCorrectPer: perCorrectPer,
         memCorrectPer: memCorrectPer,
       },
     });
@@ -1397,4 +1406,4 @@ class MetaMemTask extends React.Component {
   }
 }
 
-export default withRouter(MetaMemTask);
+export default withRouter(MemTask);

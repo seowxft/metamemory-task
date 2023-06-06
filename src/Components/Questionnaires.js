@@ -2,7 +2,7 @@ import React from "react";
 import withRouter from "./withRouter.js";
 import * as Quest from "survey-react";
 import "survey-react/survey.css";
-import style from "./style/taskStyle.module.css";
+import style from "./style/memTaskStyle.module.css";
 import "./style/surveyStyle.css";
 import * as utils from "./utils.js";
 
@@ -74,7 +74,6 @@ class Questionnaires extends React.Component {
     //  console.log(allIQText);
 
     this.state = {
-
       prolificID: prolificID,
       condition: condition,
       userID: userID,
@@ -126,9 +125,9 @@ class Questionnaires extends React.Component {
 
     var qnEnd = Math.round(performance.now());
     var prolificID = this.state.prolificID;
-    survey.setValue("userID", prolificID);
+    survey.setValue("prolificID", prolificID);
     survey.setValue("condition", this.state.condition);
-    survey.setValue("userID", userID);
+    survey.setValue("userID", this.state.userID);
     survey.setValue("date", this.state.date);
     survey.setValue("startTime", this.state.startTime);
     survey.setValue("section", this.state.section);

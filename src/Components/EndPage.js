@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./style/taskStyle.module.css";
+import style from "./style/memTaskStyle.module.css";
 import astrodude from "./img/astronaut.png";
 import withRouter from "./withRouter.js";
 
@@ -19,7 +19,6 @@ class EndPage extends React.Component {
     const userID = this.props.state.userID;
     const prolificID = this.props.state.prolificID;
     const condition = this.props.state.condition;
-    const userID = this.props.state.userID;
     const date = this.props.state.date;
     const startTime = this.props.state.startTime;
 
@@ -125,8 +124,8 @@ class EndPage extends React.Component {
           mental health.
           <br />
           <br />
-          In this task, we were interested in how you evaluate your decisions in
-          memory.
+          In the two tasks, we were interested in how you evaluate your
+          decisions in memory and perception.
           <br /> <br />
           Previous work have linked differences in behaviour to psychiatric
           disorders, which we are aiming to understand better.
@@ -223,7 +222,7 @@ class EndPage extends React.Component {
           <br />
           <br />
           If the page fails to be directed to Prolific, please use the
-          compeletion code '<strong>C1AY00C0</strong>' and send a message to us
+          compeletion code <strong>XXXXXXXXX</strong> and send a message to us
           on Proflic.
         </span>
       </div>
@@ -255,7 +254,7 @@ class EndPage extends React.Component {
     alert("You will now be redirected to Prolific's validation page.");
     document.removeEventListener("keyup", this._handleInstructKey);
     window.location =
-      "https://app.prolific.co/submissions/complete?cc=C1IBDPOT"; //this will the prolific validation code
+      "https://app.prolific.co/submissions/complete?cc=C1FUHKFG"; //this will the prolific validation code
   }
 
   ///////////////////////////////////////////////////////////////
