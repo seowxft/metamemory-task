@@ -24,14 +24,7 @@ class StartPage extends React.Component {
     // even numbers will start with the perception task
     // odd numbers will start with the memory task
     var userID = Math.floor(100000 + Math.random() * 900000);
-    var condition;
-    if (userID % 2 == 0) {
-      condition = 1;
-      console.log("Start with perception task.");
-    } else {
-      condition = 2;
-      console.log("Start with memory task.");
-    }
+    var condition = 1;
 
     const prolificID = this.props.state.prolificID;
 
@@ -71,15 +64,7 @@ class StartPage extends React.Component {
     });
 
     var condition = this.state.condition;
-    var condUrl;
-
-    if (condition === 1) {
-      //On click consent, sent to perception task
-      condUrl = "/PerTut?PROLIFIC_PID=";
-    } else {
-      //On click consent, sent to memory task
-      condUrl = "/MemPreTut?PROLIFIC_PID=";
-    }
+    var condUrl = "/MemPreTut?PROLIFIC_PID=";
 
     this.props.navigate(condUrl + this.state.prolificID, {
       state: {
