@@ -454,7 +454,7 @@ class MemTask extends React.Component {
     let instruct_text1 = (
       <div>
         <span>
-          The spaceship needs to be sorted quickly - we need your help to sort
+          The spaceship needs to be in order quickly - we need your help to sort
           the animals!
           <br /> <br />
           You will have {this.state.trialNumTotal} sets of animals to make your
@@ -530,7 +530,7 @@ class MemTask extends React.Component {
           Amazing!
           <br />
           <br />
-          You have completed catelouging all of the animals!
+          You have completed cataloguing all of the animals!
           <br />
           <br />
           <center>
@@ -572,8 +572,9 @@ class MemTask extends React.Component {
     let quiz_text1 = (
       <div>
         <center>
-          Before we begin, how well do you think you will be able to select the
-          correct animals?
+          Before we begin, out of {this.state.trialNumTotal} sets of animals,
+          how many times you do think you will be able to select the correct
+          animal seen in the set?
         </center>
         <br />
         <br />
@@ -602,8 +603,9 @@ class MemTask extends React.Component {
     let quiz_text2 = (
       <div>
         <center>
-          After going through all the animals, how well did you think you
-          selected the correct animal overall?
+          After going through all the {this.state.trialNumTotal} sets of
+          animals, how many times do you think you selected the animal seen in
+          the set corretly?
         </center>
         <br />
         <br />
@@ -849,8 +851,8 @@ class MemTask extends React.Component {
     var fixTime = Math.round(performance.now()) - this.state.trialTime;
     console.log("render stim");
     this.setState({
-      //    instructScreen: false,
-      //    taskScreen: true,
+      instructScreen: false,
+      taskScreen: true,
       taskSection: "stimulus",
       fixTime: fixTime,
     });

@@ -51,7 +51,7 @@ class MemTut extends React.Component {
       return val !== undefined;
     });
 
-    var trialNumTotal = 16; //26
+    var trialNumTotal = 25; //26
 
     //the stim position
     var choicePos = Array(Math.round(trialNumTotal / 2))
@@ -136,7 +136,7 @@ class MemTut extends React.Component {
       debug: false,
 
       memCorrectPer: memCorrectPer,
-      perCorrectPer:perCorrectPer,
+      perCorrectPer: perCorrectPer,
     };
 
     //////////////////////////////////////////////////////////////////////////////////////////////
@@ -555,7 +555,7 @@ class MemTut extends React.Component {
           {text}
           As mentioned earlier, the animals we brought on board have scattered
           to various parts of the spaceship. As we encounter them, we need your
-          assistance in catelouging one of the ones you have seen.
+          assistance in cateloguing one of the ones you have seen.
           <br /> <br />
           <center>
             Use the ← and → keys to navigate the pages.
@@ -686,7 +686,7 @@ class MemTut extends React.Component {
       <div>
         <span>
           Please respond quickly and to the best of your ability - we need to
-          round up the animals quickly!
+          sort the animals quickly!
           <br />
           <br />
           Let&apos;s start with a practice. In this phase we will tell you
@@ -1461,7 +1461,7 @@ class MemTut extends React.Component {
 
     let saveString = {
       prolificID: this.state.prolificID,
-      condition:this.state.condition,
+      condition: this.state.condition,
       userID: this.state.userID,
       date: this.state.date,
       startTime: this.state.startTime,
@@ -1581,7 +1581,7 @@ class MemTut extends React.Component {
         stateWord: this.state.stateWord,
         stimNum: this.state.stimNum,
         memCorrectPer: this.state.memCorrectPer,
-        perCorrectPer:this.state.perCorrectPer
+        perCorrectPer: this.state.perCorrectPer,
       },
     });
 
