@@ -1,7 +1,7 @@
 import screenfull from "screenfull";
 import React from "react";
 import withRouter from "./withRouter.js";
-import style from "./style/taskStyle.module.css";
+import style from "./style/pertaskStyle.module.css";
 import queryString from "query-string";
 
 class Home extends React.Component {
